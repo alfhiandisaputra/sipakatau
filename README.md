@@ -4,7 +4,10 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
-**SIPAKATAU** adalah platform pengelolaan sampah cerdas berbasis web yang mengintegrasikan teknologi AI, pemetaan interaktif, dan sistem ekonomi sirkular. Nama ini diambil dari filosofi Bugis **"Sipakatau"** yang berarti saling memanusiakan—mencerminkan misi kami untuk memanusiakan lingkungan dan meningkatkan kualitas hidup masyarakat.
+**SIPAKATAU** adalah platform pengelolaan sampah cerdas berbasis web yang mengintegrasikan teknologi AI, pemetaan interaktif, dan sistem ekonomi sirkular. Nama ini diambil dari filosofi Bugis **"Sipakatau"** yang berarti saling memanusiakan —mencerminkan misi kami untuk memanusiakan lingkungan dan meningkatkan kualitas hidup masyarakat. Kami percaya bahwa Smart Society bukan sekadar tentang robot atau sensor, tapi tentang bagaimana teknologi dapat memanusiakan warga dengan menciptakan lingkungan yang bersih (melalui pemilahan sampah) dan memberikan apresiasi yang adil atas kontribusi mereka (melalui sistem poin dan reward).
+
+**TAGLINE**
+"Smart Waste, Smart People, Sipakatau."
 
 ---
 
