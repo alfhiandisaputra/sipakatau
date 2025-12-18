@@ -30,6 +30,36 @@ Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi
 - **Animasi:** Framer Motion & AOS (Animate on Scroll)
 - **Icons & Visuals:** Lucide React & Unsplash
 
+## 🚀 Instalasi & Penggunaan
+1. **Clone Repositori**
+   ```bash
+   git clone [https://github.com/username/sipakatau-web.git](https://github.com/username/sipakatau-web.git)
+   cd sipakatau-web
+2. **Pasang seluruh dependencies dengan perintah berikut.**
+   ```shell
+   npm install
+   ```
+   
+## Scripts
+
+- Build for Production:
+  ```shell
+  npm run build
+  ```
+  Script ini menjalankan webpack dalam mode production menggunakan konfigurasi `webpack.prod.js` dan menghasilkan sejumlah file build ke direktori `dist`.
+
+- Start Development Server:
+  ```shell
+  npm run start-dev
+  ```
+  Script ini menjalankan server pengembangan webpack dengan fitur live reload dan mode development sesuai konfigurasi di`webpack.dev.js`.
+
+- Serve:
+  ```shell
+  npm run serve
+  ```
+  Script ini menggunakan [`http-server`](https://www.npmjs.com/package/http-server) untuk menyajikan konten dari direktori `dist`.
+
 
 ## PROJECT STRUKTUR
 ```
@@ -60,29 +90,11 @@ Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi
 └── README.md
 ```
 
+## OUR DEVELOPER TIM
+Tim Pengembang **TIM HORE UNIPOL**
 
-## 🚀 Instalasi & Penggunaan
-1. **Clone Repositori**
-   ```bash
-   git clone [https://github.com/username/sipakatau-web.git](https://github.com/username/sipakatau-web.git)
-   cd sipakatau-web
-   
-## Scripts
+Efryan - Frontend & UI/UX Designer
 
-- Build for Production:
-  ```shell
-  npm run build
-  ```
-  Script ini menjalankan webpack dalam mode production menggunakan konfigurasi `webpack.prod.js` dan menghasilkan sejumlah file build ke direktori `dist`.
+Ferdi - Frontend Developer
 
-- Start Development Server:
-  ```shell
-  npm run start-dev
-  ```
-  Script ini menjalankan server pengembangan webpack dengan fitur live reload dan mode development sesuai konfigurasi di`webpack.dev.js`.
-
-- Serve:
-  ```shell
-  npm run serve
-  ```
-  Script ini menggunakan [`http-server`](https://www.npmjs.com/package/http-server) untuk menyajikan konten dari direktori `dist`.
+Alfhian - Research & Copywriter
