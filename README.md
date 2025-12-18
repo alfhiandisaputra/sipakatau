@@ -1,7 +1,4 @@
-# sipakatau
-SIPAKATAU: Sistem Pintar Kelola Sampah untuk Tatanan Masyarakat Unggul
-
-# ♻️ SIPAKATAU (Smart Interactive Platform for Waste Management and Urban Society)
+# ♻️ SIPAKATAU (Sistem Pintar Kelola Sampah untuk Tatanan Masyarakat Unggul)
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -12,7 +9,7 @@ SIPAKATAU: Sistem Pintar Kelola Sampah untuk Tatanan Masyarakat Unggul
 ---
 
 ## 🌟 Masalah & Solusi
-Masyarakat perkotaan seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi untuk menyetor sampah ke bank sampah. **SIPAKATAU** hadir sebagai solusi "Smart Society" dengan:
+Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi untuk menyetor sampah ke bank sampah. **SIPAKATAU** hadir sebagai solusi "Smart Society" dengan:
 - **Edukasi Praktis:** Menggunakan simulasi AI untuk memilah sampah.
 - **Logistik Efisien:** Layanan penjemputan sampah langsung ke rumah.
 - **Apresiasi Nyata:** Sistem poin yang dapat ditukar dengan kebutuhan harian.
@@ -29,6 +26,35 @@ Masyarakat perkotaan seringkali kesulitan dalam memilah sampah dan tidak memilik
 - **State Management:** React Context API (Simulasi poin & data user)
 - **Animasi:** Framer Motion & AOS (Animate on Scroll)
 - **Icons & Visuals:** Lucide React & Unsplash
+
+
+## STRUKTUR FOLDER sipakatau-web/
+├── public/                 # Aset publik (favicon, logo, manifest)
+├── src/
+│   ├── assets/             # Gambar, Ilustrasi, SVG
+│   ├── components/         # Komponen UI Reusable
+│   │   ├── ui/             # Komponen kecil (Button, Input, Badge)
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── BentoGrid.jsx   # Layout dashboard
+│   │   └── Leaderboard.jsx
+│   ├── data/               # Mock data (JSON) untuk simulasi poin/lokasi
+│   ├── hooks/              # Custom React hooks
+│   ├── pages/              # Halaman Utama
+│   │   ├── Home.jsx        # Landing Page
+│   │   ├── Dashboard.jsx   # Pusat User (Poin, Milestone)
+│   │   ├── Scanner.jsx     # Fitur Scan AI (Simulasi)
+│   │   ├── Pickup.jsx      # Form Penjemputan
+│   │   └── Rewards.jsx     # Penukaran Poin
+│   ├── context/            # State Management (Global Point System)
+│   │   └── UserContext.jsx
+│   ├── App.jsx             # Routing
+│   ├── main.jsx
+│   └── index.css           # Tailwind Directives
+├── tailwind.config.js
+├── package.json
+└── README.md
+
 
 ## 🚀 Instalasi & Penggunaan
 1. **Clone Repositori**
