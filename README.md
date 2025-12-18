@@ -28,7 +28,8 @@ Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi
 - **Icons & Visuals:** Lucide React & Unsplash
 
 
-## STRUKTUR FOLDER sipakatau-web/
+## PROJECT STRUKTUR
+```
 ├── public/                 # Aset publik (favicon, logo, manifest)
 ├── src/
 │   ├── assets/             # Gambar, Ilustrasi, SVG
@@ -54,6 +55,7 @@ Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi
 ├── tailwind.config.js
 ├── package.json
 └── README.md
+```
 
 
 ## 🚀 Instalasi & Penggunaan
@@ -61,3 +63,23 @@ Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi
    ```bash
    git clone [https://github.com/username/sipakatau-web.git](https://github.com/username/sipakatau-web.git)
    cd sipakatau-web
+   
+## Scripts
+
+- Build for Production:
+  ```shell
+  npm run build
+  ```
+  Script ini menjalankan webpack dalam mode production menggunakan konfigurasi `webpack.prod.js` dan menghasilkan sejumlah file build ke direktori `dist`.
+
+- Start Development Server:
+  ```shell
+  npm run start-dev
+  ```
+  Script ini menjalankan server pengembangan webpack dengan fitur live reload dan mode development sesuai konfigurasi di`webpack.dev.js`.
+
+- Serve:
+  ```shell
+  npm run serve
+  ```
+  Script ini menggunakan [`http-server`](https://www.npmjs.com/package/http-server) untuk menyajikan konten dari direktori `dist`.
