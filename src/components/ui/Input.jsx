@@ -1,5 +1,5 @@
-// src/components/ui/Input.jsx
-import { cn } from '../../utils';
+// src/components/ui/Input.jsx - Update dengan icon support
+import { cn } from '../../utils/index';
 
 export default function Input({
   label,
@@ -8,6 +8,7 @@ export default function Input({
   className = '',
   size = 'md',
   type = 'text',
+  icon, // Add icon prop
   ...props
 }) {
   const sizeClasses = {
@@ -23,19 +24,27 @@ export default function Input({
           {label}
         </label>
       )}
-      <input
-        type={type}
-        className={cn(
-          'w-full rounded-2xl border border-gray-300 bg-white',
-          'focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20',
-          'transition-colors duration-200 outline-none',
-          'placeholder:text-gray-400',
-          error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
-          sizeClasses[size],
-          className
+      <div className="relative">
+        {icon && (
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+            {icon}
+          </div>
         )}
-        {...props}
-      />
+        <input
+          type={type}
+          className={cn(
+            'w-full rounded-2xl border border-gray-300 bg-white',
+            'focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20',
+            'transition-colors duration-200 outline-none',
+            'placeholder:text-gray-400',
+            error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
+            sizeClasses[size],
+            icon && 'pl-10', // Add padding for icon
+            className
+          )}
+          {...props}
+        />
+      </div>
       {helperText && (
         <p className={cn(
           'text-sm',
