@@ -14,7 +14,6 @@ import {
   LogOut,
   LogIn,
   Sparkles,
-  Info
 } from 'lucide-react';
 import { Button, Avatar } from '../ui';
 import { useAuth } from '../../hooks/useAuth';
@@ -107,15 +106,6 @@ export default function Navigation({ currentPage, onNavigate }) {
                 </>
               ) : (
                 <div className="flex items-center gap-4">
-                  <Button
-                    onClick={() => handleNavigate('home')}
-                    variant="outline"
-                    className="rounded-2xl px-6 border-emerald-500 text-emerald-500 hover:bg-emerald-50 hover:border-emerald-600"
-                  >
-                    <Info className="w-4 h-4 mr-2" />
-                    Tentang
-                  </Button>
-                  <div className="h-6 w-px bg-gray-300"></div>
                   <Button
                     onClick={() => handleNavigate('auth')}
                     variant="primary"
