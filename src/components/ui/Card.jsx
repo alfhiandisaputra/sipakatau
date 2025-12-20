@@ -1,5 +1,5 @@
 // src/components/ui/Card.jsx
-import { cn } from '../../utils/index';
+import { cn } from '../../utils';
 
 export default function Card({ 
   children, 

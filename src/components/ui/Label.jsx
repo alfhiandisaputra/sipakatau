@@ -1,5 +1,5 @@
 // src/components/ui/Label.jsx
-import { cn } from '../../utils/index';
+import { cn } from '../../utils';
 
 export default function Label({
   children,

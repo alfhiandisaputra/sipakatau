@@ -1,5 +1,5 @@
 // src/components/ui/Badge.jsx
-import { cn } from '../../utils/index';
+import { cn } from '../../utils';
 
 const Badge = ({ 
   children,

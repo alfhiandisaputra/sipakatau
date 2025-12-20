@@ -1,5 +1,5 @@
 // src/components/ui/Input.jsx
-import { cn } from '../../utils/index';
+import { cn } from '../../utils';
 
 export default function Input({
   label,

@@ -1,5 +1,5 @@
 // src/components/ui/Progress.jsx
-import { cn } from '../../utils/index';
+import { cn } from '../../utils';
 
 export default function Progress({ 
   value = 0, 
