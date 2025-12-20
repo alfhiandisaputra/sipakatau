@@ -1,5 +1,5 @@
 // src/components/ui/Button.jsx
-import { cn } from '../../utils/index';
+import { cn } from '../../utils';
 
 export default function Button({ 
   children, 
@@ -20,12 +20,13 @@ export default function Button({
   };
 
   const variantClasses = {
+    // Tailwind v4: Gunakan background-image untuk gradient
     primary: 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25',
     secondary: 'bg-teal-500 hover:bg-teal-600 text-white',
     outline: 'border-2 border-emerald-500 text-emerald-500 hover:bg-emerald-50',
     ghost: 'text-gray-700 hover:bg-gray-100',
     danger: 'bg-red-500 hover:bg-red-600 text-white',
-    gold: 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white'
+    gold: 'bg-[linear-gradient(to_right,#F59E0B,#F97316)] hover:bg-[linear-gradient(to_right,#D97706,#EA580C)] text-white'
   };
 
   return (
