@@ -22,52 +22,83 @@ export default function Navigation({ currentPage, onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, logout } = useAuth(); 
 
-  const navItems = [
-    { id: 'home', label: 'Beranda', icon: Home },
+  const EXCLUDED_PAGES = ['auth', 'admin-dashboard'];
+
+  const mobileBottomNavItems = user ? [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'scanner', label: 'Scanner', icon: Camera },
     { id: 'map', label: 'Peta', icon: MapPin },
+    { id: 'scanner', label: 'Scanner', icon: Camera },
     { id: 'pickup', label: 'Pickup', icon: Truck },
-    { id: 'rewards', label: 'Rewards', icon: Trophy },
-  ];
+    { id: 'leaderboard', label: 'Ranking', icon: Trophy },
+  ] : [];
 
-  if (user?.role === 'admin') {
-    navItems.push({ id: 'admin', label: 'Admin', icon: User });
-  }
 
-  const handleNavigate = (page) => {
-    onNavigate(page);
-    setMobileMenuOpen(false);
-  };
+  const desktopNavItems = user ? [
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
+  ] : [];
+
+  const mobileMenuItems = user ? [
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
+    ...(user?.role === 'admin' ? [{ id: 'admin', label: 'Admin', icon: User }] : []),
+  ] : [];
+
 
   const unauthedNavItems = [
     { id: 'home', label: 'Beranda', icon: Home },
   ];
 
-  const itemsToDisplay = user ? navItems : unauthedNavItems;
+  const handleNavigate = (page) => {
+    if (page === 'home' && user) {
+      onNavigate('dashboard');
+    } else if (page === 'home') {
+      onNavigate('home');
+    } else {
+      onNavigate(page);
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    if (user) {
+      onNavigate('dashboard');
+    } else {
+      onNavigate('home');
+    }
+  };
+
+  const handleProfileClick = () => {
+    onNavigate('profile');
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:block fixed top-0 left-0 right-0 glass-effect border-b z-50">
+      <nav className="hidden md:block fixed top-0 left-0 right-0 glass-effect border-b z-50 h-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div 
-              onClick={() => handleNavigate('home')}
+              onClick={handleLogoClick}
               className="flex items-center gap-3 cursor-pointer group"
             >
               <div className="bg-linear-to-br from-emerald-500 to-teal-500 p-3 rounded-2xl group-hover:scale-105 transition-transform">
                 <Home className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">SIPAKATAU</h1>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">SIPAKATAU</h1>
+                <p className="text-xs text-gray-500">Peduli Lingkungan</p>
+              </div>
             </div>
 
             {/* Navigation Items */}
             <div className="flex items-center gap-2">
               {user ? (
                 <>
-                  {navItems.slice(1).map((item) => {
+                  {/* Desktop Nav Items */}
+                  {desktopNavItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = currentPage === item.id;
                     
@@ -77,9 +108,10 @@ export default function Navigation({ currentPage, onNavigate }) {
                         onClick={() => handleNavigate(item.id)}
                         variant={isActive ? 'primary' : 'ghost'}
                         className={cn(
-                          'rounded-2xl px-6',
-                          isActive && 'shadow-lg'
+                          'rounded-xl px-4',
+                          isActive && 'shadow-md'
                         )}
+                        size="sm"
                       >
                         <Icon className="w-4 h-4 mr-2" />
                         {item.label}
@@ -88,31 +120,50 @@ export default function Navigation({ currentPage, onNavigate }) {
                   })}
                   
                   {/* User Menu */}
-                  <div className="ml-4 flex items-center gap-3">
-                    <Avatar 
-                      src={user.avatar} 
-                      fallback={user.name?.charAt(0) || 'U'}
-                      size="sm"
-                    />
+                  <div className="ml-4 flex items-center gap-2">
+                    <div 
+                      className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer transition-colors"
+                      onClick={handleProfileClick}
+                    >
+                      <Avatar 
+                        src={user.avatar} 
+                        fallback={user.name}
+                        size="sm"
+                      />
+                      <div className="hidden lg:block">
+                        <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                        <p className="text-xs text-gray-500">{user.points} poin</p>
+                      </div>
+                    </div>
                     <Button
                       onClick={logout}
                       variant="ghost"
                       size="sm"
-                      className="text-gray-600"
+                      className="text-gray-600 rounded-xl"
                     >
                       <LogOut className="w-4 h-4" />
                     </Button>
                   </div>
                 </>
               ) : (
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <Button
-                    onClick={() => handleNavigate('auth')}
+                    onClick={() => onNavigate('auth')}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-xl border-emerald-500 text-emerald-500 hover:bg-emerald-50"
+                  >
+                    <LogIn className="w-4 h-4 mr-2" />
+                    Masuk
+                  </Button>
+                  <Button
+                    onClick={() => onNavigate('auth')}
                     variant="primary"
-                    className="rounded-2xl px-6 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-shadow"
+                    size="sm"
+                    className="rounded-xl shadow-emerald-500/25"
                   >
                     <Sparkles className="w-4 h-4 mr-2" />
-                    Daftar Sekarang
+                    Daftar
                   </Button>
                 </div>
               )}
@@ -121,140 +172,190 @@ export default function Navigation({ currentPage, onNavigate }) {
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 glass-effect border-b z-50">
+      {/* Mobile Top Navigation */}
+      <nav className="md:hidden fixed top-0 left-0 right-0 glass-effect border-b z-50 h-16">
         <div className="flex items-center justify-between px-4 h-16">
           <div 
-            onClick={() => handleNavigate('home')}
+            onClick={handleLogoClick}
             className="flex items-center gap-2 cursor-pointer group"
           >
             <div className="bg-linear-to-br from-emerald-500 to-teal-500 p-2 rounded-xl group-hover:scale-105 transition-transform">
               <Home className="w-5 h-5 text-white" />
             </div>
-            <h1 className="text-xl font-bold text-gray-900">SIPAKATAU</h1>
+            <div>
+              <h1 className="text-lg font-bold text-gray-900">SIPAKATAU</h1>
+              <p className="text-[10px] text-gray-500">Peduli Lingkungan</p>
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="rounded-xl"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </Button>
+            {user && (
+              <div className="flex items-center gap-2">
+                <div 
+                  className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
+                  onClick={handleProfileClick}
+                >
+                  <Avatar 
+                    src={user.avatar} 
+                    fallback={user.name}
+                    size="xs"
+                  />
+                  <div className="text-right">
+                    <p className="text-xs font-medium text-gray-900">{user.name?.split(' ')[0] || 'User'}</p>
+                    <p className="text-[10px] text-gray-500">{user.points} poin</p>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="rounded-xl"
+                >
+                  {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </Button>
+              </div>
+            )}
+            {!user && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="rounded-xl"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </Button>
+            )}
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (Hamburger Menu) */}
       {mobileMenuOpen && (
-  <div className="md:hidden fixed top-16 left-0 right-0 glass-effect border-b z-40 shadow-lg">
-    <div className="px-4 py-4 space-y-2">
-      {itemsToDisplay.map((item) => {
-        const Icon = item.icon;
-        const isActive = currentPage === item.id;
-        
-        return (
-          <Button
-            key={item.id}
-            onClick={() => handleNavigate(item.id)}
-            variant={isActive ? 'primary' : 'ghost'}
-            className="w-full justify-start rounded-2xl px-6 py-4"
-          >
-            <Icon className="w-5 h-5 mr-3" />
-            {item.label}
-          </Button>
-        );
-      })}
-      
-      {user ? (
-        <div className="pt-4 border-t border-gray-200">
-          <div className="flex items-center gap-3 px-4 py-3">
-            <Avatar 
-              src={user.avatar} 
-              fallback={user.name?.charAt(0) || 'U'}
-              size="sm"
-            />
-            <div className="flex-1">
-              <p className="font-medium text-gray-900">{user.name}</p>
-              <p className="text-sm text-gray-500">{user.points} poin</p>
-            </div>
-            <Button
-              onClick={logout}
-              variant="ghost"
-              size="sm"
-              className="text-gray-600"
-            >
-              <LogOut className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
-      ) : (
-        <div className="pt-4 border-t border-gray-200">
-          <div className="space-y-3">
-            <Button
-              onClick={() => handleNavigate('auth')}
-              variant="outline"
-              className="w-full rounded-2xl px-6 py-4 border-emerald-500 text-emerald-500"
-            >
-              <LogIn className="w-5 h-5 mr-3" />
-              Masuk ke Akun
-            </Button>
-            <Button
-              onClick={() => handleNavigate('auth')}
-              variant="primary"
-              className="w-full rounded-2xl px-6 py-4 shadow-lg"
-            >
-              <Sparkles className="w-5 h-5 mr-3" />
-              Daftar Gratis
-            </Button>
-            <p className="text-xs text-center text-gray-500 px-4 pt-2">
-              Bergabunglah dengan komunitas peduli lingkungan
-            </p>
+        <div className="md:hidden fixed top-16 left-0 right-0 glass-effect border-b z-40 shadow-lg">
+          <div className="px-4 py-4 space-y-2 max-h-[60vh] overflow-y-auto">
+            {user ? (
+              <>
+                {/* Mobile Menu Items */}
+                {mobileMenuItems.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = currentPage === item.id;
+                  
+                  return (
+                    <Button
+                      key={item.id}
+                      onClick={() => handleNavigate(item.id)}
+                      variant={isActive ? 'primary' : 'ghost'}
+                      className="w-full justify-start rounded-xl px-4 py-3"
+                    >
+                      <Icon className="w-5 h-5 mr-3" />
+                      {item.label}
+                    </Button>
+                  );
+                })}
+                
+                {/* Profile and Logout */}
+                <div className="pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between px-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <Avatar 
+                        src={user.avatar} 
+                        fallback={user.name}
+                        size="sm"
+                      />
+                      <div>
+                        <p className="font-medium text-gray-900">{user.name}</p>
+                        <p className="text-sm text-gray-500">{user.points} poin • Level {user.level}</p>
+                      </div>
+                    </div>
+                    <Button
+                      onClick={logout}
+                      variant="ghost"
+                      size="sm"
+                      className="text-gray-600 rounded-xl"
+                    >
+                      <LogOut className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="space-y-3">
+                <div className="text-center pb-4">
+                  <p className="text-gray-600">Bergabunglah dengan komunitas peduli lingkungan</p>
+                </div>
+                {unauthedNavItems.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = currentPage === item.id;
+                  
+                  return (
+                    <Button
+                      key={item.id}
+                      onClick={() => handleNavigate(item.id)}
+                      variant={isActive ? 'primary' : 'ghost'}
+                      className="w-full justify-start rounded-xl px-4 py-3"
+                    >
+                      <Icon className="w-5 h-5 mr-3" />
+                      {item.label}
+                    </Button>
+                  );
+                })}
+                <Button
+                  onClick={() => onNavigate('auth')}
+                  variant="outline"
+                  className="w-full rounded-xl px-6 py-4 border-emerald-500 text-emerald-500"
+                >
+                  <LogIn className="w-5 h-5 mr-3" />
+                  Masuk ke Akun
+                </Button>
+                <Button
+                  onClick={() => onNavigate('auth')}
+                  variant="primary"
+                  className="w-full rounded-xl px-6 py-4 shadow-lg"
+                >
+                  <Sparkles className="w-5 h-5 mr-3" />
+                  Daftar Gratis
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       )}
-    </div>
-  </div>
-)}
 
       {/* Bottom Navigation (Mobile) - Hanya untuk user yang login */}
       {user && (
         <nav className="md:hidden fixed bottom-0 left-0 right-0 glass-effect border-t z-50">
-          <div className="grid grid-cols-5 gap-1 px-2 py-2">
-            {navItems.slice(0, 5).map((item) => {
+          <div className="grid grid-cols-5 gap-1 px-1 py-2">
+            {mobileBottomNavItems.map((item) => {
               const Icon = item.icon;
               const isActive = currentPage === item.id;
               
               return (
-                <Button
+                <button
                   key={item.id}
                   onClick={() => handleNavigate(item.id)}
-                  variant="ghost"
-                  className="flex-col h-auto py-3 rounded-2xl"
+                  className={cn(
+                    "flex flex-col items-center justify-center py-2 rounded-xl transition-all",
+                    isActive 
+                      ? "bg-emerald-50 text-emerald-600" 
+                      : "text-gray-600 hover:bg-gray-50"
+                  )}
                 >
                   <Icon className={cn(
-                    "w-6 h-6 mb-1",
-                    isActive ? "text-emerald-500" : "text-gray-600"
+                    "w-5 h-5 mb-1",
+                    isActive ? "text-emerald-500" : "text-gray-500"
                   )} />
                   <span className={cn(
-                    "text-xs",
-                    isActive ? "text-emerald-500 font-medium" : "text-gray-600"
+                    "text-[10px] font-medium",
+                    isActive ? "text-emerald-500" : "text-gray-600"
                   )}>
                     {item.label}
                   </span>
-                </Button>
+                </button>
               );
             })}
           </div>
         </nav>
       )}
-
-      {/* Spacers */}
-      <div className="h-20 hidden md:block"></div>
-      <div className="h-16 md:hidden"></div>
-      {user && <div className="h-20 md:hidden"></div>}
     </>
   );
 }

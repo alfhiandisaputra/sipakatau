@@ -10,6 +10,8 @@ export default function Button({
   disabled = false,
   loading = false,
   type = 'button',
+  icon: Icon, 
+  iconPosition = 'left',
   ...props 
 }) {
   const sizeClasses = {
@@ -19,8 +21,21 @@ export default function Button({
     xl: 'px-10 py-5 text-xl rounded-3xl'
   };
 
+  const iconSizeClasses = {
+    sm: 'w-3.5 h-3.5',
+    md: 'w-4 h-4',
+    lg: 'w-5 h-5',
+    xl: 'w-6 h-6'
+  };
+
+  const gapClasses = {
+    sm: 'gap-2',
+    md: 'gap-2.5',
+    lg: 'gap-3',
+    xl: 'gap-3.5'
+  };
+
   const variantClasses = {
-    // Tailwind v4: Gunakan background-image untuk gradient
     primary: 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25',
     secondary: 'bg-teal-500 hover:bg-teal-600 text-white',
     outline: 'border-2 border-emerald-500 text-emerald-500 hover:bg-emerald-50',
@@ -35,23 +50,43 @@ export default function Button({
       onClick={onClick}
       disabled={disabled || loading}
       className={cn(
-        'font-medium transition-all duration-200',
+        'inline-flex items-center justify-center font-medium',
+        'transition-all duration-200',
         'focus:outline-none focus:ring-2 focus:ring-emerald-500/30',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         'active:scale-95',
         sizeClasses[size],
+        gapClasses[size],
         variantClasses[variant],
         loading && 'relative text-transparent',
         className
       )}
       {...props}
     >
-      {loading && (
+      {loading ? (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          <div className={cn(
+            "border-2 border-white border-t-transparent rounded-full animate-spin",
+            iconSizeClasses[size]
+          )}></div>
         </div>
+      ) : (
+        <>
+          {Icon && iconPosition === 'left' && (
+            <Icon className={cn(iconSizeClasses[size])} />
+          )}
+          
+          {typeof children === 'string' ? (
+            <span className="whitespace-nowrap">{children}</span>
+          ) : (
+            children
+          )}
+          
+          {Icon && iconPosition === 'right' && (
+            <Icon className={cn(iconSizeClasses[size])} />
+          )}
+        </>
       )}
-      {children}
     </button>
   );
 }

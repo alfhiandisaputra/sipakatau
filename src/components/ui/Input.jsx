@@ -8,7 +8,7 @@ export default function Input({
   className = '',
   size = 'md',
   type = 'text',
-  icon, // Add icon prop
+  icon,
   ...props
 }) {
   const sizeClasses = {
