@@ -259,7 +259,7 @@ export default function UserDashboard({ onNavigate }) {
             {/* Right Column - Leaderboard & Goals */}
             <div className="space-y-8">
               {/* Leaderboard */}
-              <Card className="p-6 rounded-3xl">
+            <Card className="p-6 rounded-3xl">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-gray-900">Papan Peringkat</h2>
                   <span className="text-sm text-gray-500">Minggu ini</span>

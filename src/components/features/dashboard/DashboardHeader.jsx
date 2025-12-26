@@ -20,8 +20,8 @@ export default function DashboardHeader({ user }) {
           <div className="mt-3 md:mt-0">
             <div className="bg-white/20 backdrop-blur-lg rounded-xl md:rounded-2xl p-3 md:p-4">
               <div className="flex items-center gap-3 md:gap-4">
-                <div className="bg-white p-2 md:p-3 rounded-lg md:rounded-xl">
-                  <Award className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" />
+                <div className="bg-linear-to-br from-amber-500 to-emerald-400 bg-white p-2 md:p-3 rounded-lg md:rounded-xl">
+                  <Award className="w-5 h-5 md:w-6 md:h-6 text-white" />
                 </div>
                 <div>
                   <p className="text-emerald-100 text-xs md:text-sm">Total Poin Anda</p>

@@ -24,7 +24,7 @@ export default function LandingPage({ onNavigate }) {
         <div className="absolute inset-0">
           <ImageWithFallback
             src="/images/illustrations/hero-illustration.png"
-            fallbackSrc="https://images.unsplash.com/photo-1467241850596-6a0de48568da"
+            fallbackSrc="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Sustainable city"
             className="w-full h-full object-cover opacity-20"
           />
@@ -32,8 +32,8 @@ export default function LandingPage({ onNavigate }) {
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto text-white">
           <div className="mb-6 flex justify-center">
-            <div className="bg-white/20 backdrop-blur-lg rounded-3xl px-8 py-3 border border-white/30">
-              <h1 className="text-6xl md:text-7xl font-bold tracking-tight">SIPAKATAU</h1>
+            <div className="bg-white/20 backdrop-blur-lg rounded-3xl px-8 py-3 border border-white/30 mt-10 shadow-lg hover:shadow-2xl transition-shadow">
+              <h1 className="text-6xl md:text-7xl font-bold tracking-tight"><span className='text-emerald-300'>SI</span>PAKATAU</h1>
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl mb-8 font-semibold">
