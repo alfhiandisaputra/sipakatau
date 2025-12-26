@@ -20,11 +20,11 @@ export default function LandingPage({ onNavigate }) {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-br from-emerald-500 via-teal-500 to-emerald-500 opacity-90"></div>
+        <div className="absolute inset-0 bg-teal-900 opacity-95"></div>
         <div className="absolute inset-0">
           <ImageWithFallback
             src="/images/illustrations/hero-illustration.png"
-            fallbackSrc="https://images.unsplash.com/photo-1467241850596-6a0de48568da"
+            fallbackSrc="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Sustainable city"
             className="w-full h-full object-cover opacity-20"
           />
@@ -32,21 +32,22 @@ export default function LandingPage({ onNavigate }) {
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto text-white">
           <div className="mb-6 flex justify-center">
-            <div className="bg-white/20 backdrop-blur-lg rounded-3xl px-8 py-3 border border-white/30">
-              <h1 className="text-6xl md:text-7xl font-bold tracking-tight">SIPAKATAU</h1>
+            <div className="bg-white/20 backdrop-blur-lg rounded-3xl px-4 py-2 border border-white/30 mt-20">
+              <h1 className="text-6xl md:text-7xl font-bold tracking-tight"><span className='bg-clip-text text-transparent bg-linear-to-r from-emerald-300 to-teal-300'>SI</span>PAKATAU</h1>
+              <p className="text-sm md:text-base text-white/90">Sistem Pintar Kelola Sampah untuk Masyarakat Unggul</p>
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl mb-8 font-semibold">
             Memanusiakan Lingkungan, Membangun Masa Depan Bersama
           </h2>
           <p className="text-xl md:text-2xl mb-12 opacity-95">
-           Solusi cerdas untuk keluarga dan generasi muda dalam mengelola sampah secara mudah, aman, dan bernilai
+          Solusi cerdas untuk keluarga dan generasi muda dalam mengelola sampah secara mudah, aman, dan bernilai
           </p>
           <Button
             onClick={handleGetStarted}
             size="lg"
             variant="primary"
-            className="rounded-3xl px-12 py-6 text-xl shadow-2xl"
+            className="rounded-3xl px-12 py-6 text-xl shadow-2xl bg-emerald-500 hover:bg-emerald-600 transition-colors"
           >
             {user ? 'Lanjutkan Aktivitas' : 'Mulai Pilah Sekarang'}
           </Button>

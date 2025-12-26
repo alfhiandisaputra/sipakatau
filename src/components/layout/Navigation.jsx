@@ -24,6 +24,10 @@ export default function Navigation({ currentPage, onNavigate }) {
 
   const EXCLUDED_PAGES = ['auth', 'admin-dashboard'];
 
+  if(EXCLUDED_PAGES.includes(currentPage)) {
+    return null;
+  }
+
   const mobileBottomNavItems = user ? [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'map', label: 'Peta', icon: MapPin },
@@ -89,7 +93,7 @@ export default function Navigation({ currentPage, onNavigate }) {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">SIPAKATAU</h1>
-                <p className="text-xs text-gray-500">Peduli Lingkungan</p>
+                <p className="text-xs text-gray-700">Sistem Pintar Kelola Sampah</p>
               </div>
             </div>
 
@@ -132,7 +136,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                       />
                       <div className="hidden lg:block">
                         <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                        <p className="text-xs text-gray-500">{user.points} poin</p>
+                        <p className="text-xs text-gray-800">{user.points} poin</p>
                       </div>
                     </div>
                     <Button
@@ -151,7 +155,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                     onClick={() => onNavigate('auth')}
                     variant="outline"
                     size="sm"
-                    className="rounded-xl border-emerald-500 text-emerald-500 hover:bg-emerald-50"
+                    className="rounded-xl border-emerald-500 text-emerald-500 bg-white hover:text-emerald-600 hover:border-emerald-600 hover:bg-gray-300"
                   >
                     <LogIn className="w-4 h-4 mr-2" />
                     Masuk
@@ -160,7 +164,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                     onClick={() => onNavigate('auth')}
                     variant="primary"
                     size="sm"
-                    className="rounded-xl shadow-emerald-500/25"
+                    className="rounded-xl border-white shadow-emerald-500/25"
                   >
                     <Sparkles className="w-4 h-4 mr-2" />
                     Daftar
@@ -184,7 +188,7 @@ export default function Navigation({ currentPage, onNavigate }) {
             </div>
             <div>
               <h1 className="text-lg font-bold text-gray-900">SIPAKATAU</h1>
-              <p className="text-[10px] text-gray-500">Peduli Lingkungan</p>
+              <p className="text-[10px] text-gray-700">Sistem Pintar Kelola Sampah</p>
             </div>
           </div>
 
@@ -202,7 +206,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                   />
                   <div className="text-right">
                     <p className="text-xs font-medium text-gray-900">{user.name?.split(' ')[0] || 'User'}</p>
-                    <p className="text-[10px] text-gray-500">{user.points} poin</p>
+                    <p className="text-[10px] text-gray-700">{user.points} poin</p>
                   </div>
                 </div>
                 <Button
@@ -222,7 +226,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="rounded-xl"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5 bg" />}
               </Button>
             )}
           </div>
@@ -292,7 +296,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                       key={item.id}
                       onClick={() => handleNavigate(item.id)}
                       variant={isActive ? 'primary' : 'ghost'}
-                      className="w-full justify-start rounded-xl px-4 py-3"
+                      className="w-full rounded-xl px-4 py-3"
                     >
                       <Icon className="w-5 h-5 mr-3" />
                       {item.label}
@@ -302,7 +306,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                 <Button
                   onClick={() => onNavigate('auth')}
                   variant="outline"
-                  className="w-full rounded-xl px-6 py-4 border-emerald-500 text-emerald-500"
+                  className="w-full rounded-xl px-6 py-4 border-emerald-500 text-emerald-500 bg-white hover:text-emerald-600 hover:border-emerald-600 hover:bg-gray-300"
                 >
                   <LogIn className="w-5 h-5 mr-3" />
                   Masuk ke Akun
