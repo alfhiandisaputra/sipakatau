@@ -1,7 +1,7 @@
 // src/components/features/scanner/ScannerHeader.jsx
 import { ArrowLeft, Award } from 'lucide-react';
 
-const ScannerHeader = ({ user, onBack }) => {
+const PickupHeader = ({ user, onBack }) => {
   return (
     <div className="bg-linear-to-r from-emerald-500 to-teal-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -15,10 +15,10 @@ const ScannerHeader = ({ user, onBack }) => {
             </button>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white">
-                AI Waste Scanner
+                Digital Pickup Request
               </h1>
               <p className="text-emerald-100 mt-2">
-                Scan sampah, identifikasi, dapatkan poin
+                Formulir Cerdas untuk Penjemputan Sampah Anda
               </p>
             </div>
           </div>
@@ -42,4 +42,4 @@ const ScannerHeader = ({ user, onBack }) => {
   );
 };
 
-export default ScannerHeader;
+export default PickupHeader;
