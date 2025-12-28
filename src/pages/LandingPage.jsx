@@ -23,9 +23,9 @@ export default function LandingPage({ onNavigate }) {
         <div className="absolute inset-0 bg-teal-900 opacity-95"></div>
         <div className="absolute inset-0">
           <ImageWithFallback
-            src="/images/illustrations/hero-illustration.png"
+            src="/src/assets/background.avif"
             fallbackSrc="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Sustainable city"
+            alt="recycle background"
             className="w-full h-full object-cover opacity-20"
           />
         </div>
