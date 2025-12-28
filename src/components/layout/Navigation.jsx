@@ -88,8 +88,8 @@ export default function Navigation({ currentPage, onNavigate }) {
               onClick={handleLogoClick}
               className="flex items-center gap-3 cursor-pointer group"
             >
-              <div className="bg-linear-to-br from-emerald-500 to-teal-500 p-3 rounded-2xl group-hover:scale-105 transition-transform">
-                <Home className="w-6 h-6 text-white" />
+              <div className="group-hover:scale-105 transition-transform">
+                <img src="public/sipakatau.svg" alt="logo" className='w-20 h-20' />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">SIPAKATAU</h1>
@@ -183,8 +183,8 @@ export default function Navigation({ currentPage, onNavigate }) {
             onClick={handleLogoClick}
             className="flex items-center gap-2 cursor-pointer group"
           >
-            <div className="bg-linear-to-br from-emerald-500 to-teal-500 p-2 rounded-xl group-hover:scale-105 transition-transform">
-              <Home className="w-5 h-5 text-white" />
+            <div className="group-hover:scale-105 transition-transform">
+                <img src="public/sipakatau.svg" alt="logo" className='w-15 h-15' />
             </div>
             <div>
               <h1 className="text-lg font-bold text-gray-900">SIPAKATAU</h1>
