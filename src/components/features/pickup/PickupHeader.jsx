@@ -1,4 +1,4 @@
-// src/components/features/scanner/ScannerHeader.jsx
+// src/components/features/pickup/PickupHeader.jsx
 import { ArrowLeft, Award } from 'lucide-react';
 
 const PickupHeader = ({ user, onBack }) => {
@@ -7,7 +7,6 @@ const PickupHeader = ({ user, onBack }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            {/* Tombol Back yang dioptimalkan */}
             <button
               type="button"
               onClick={onBack}
@@ -36,11 +35,10 @@ const PickupHeader = ({ user, onBack }) => {
             </div>
           </div>
           
-          {/* User Points Card (Desktop Only) */}
           <div className="hidden md:block">
             <div className="bg-white/20 backdrop-blur-lg rounded-2xl p-4">
               <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-br from-[#F59E0B] to-[#10B981] p-3 rounded-xl">
+                <div className="bg-linear-to-br from-[#F59E0B] to-[#10B981] p-3 rounded-xl">
                   <Award className="w-6 h-6 text-white" />
                 </div>
                 <div>

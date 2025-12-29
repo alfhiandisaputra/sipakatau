@@ -8,7 +8,6 @@ import { CheckCircle, Calendar, MapPin, Package, ArrowRight, ArrowLeft } from "l
 import { useAuth } from '../hooks/useAuth';
 
 
-// Menghapus ": { onNavigate: (page: string) => void }" karena ini sintaks TypeScript
 export default function PickupRequest({ onNavigate }) {
   const { user } = useAuth();
 
@@ -21,7 +20,7 @@ export default function PickupRequest({ onNavigate }) {
     address: 'Jl. Sudirman No. 123, Jakarta Pusat',
   });
 
-  // Logika poin tetap sama
+
   const estimatedPoints = formData.weight ? parseInt(formData.weight) * 100 : 0;
 
   const handleNext = () => {
@@ -33,9 +32,7 @@ export default function PickupRequest({ onNavigate }) {
   };
 
   const handleSubmit = () => {
-    // Simulasi submit
     alert('Penjemputan berhasil dijadwalkan! Tim kami akan segera menghubungi Anda.');
-    // Memanggil fungsi navigasi jika tersedia
     if (onNavigate) onNavigate('dashboard');
   };
 
@@ -50,25 +47,21 @@ export default function PickupRequest({ onNavigate }) {
           </p>
         </div>
 
-        {/* Progress Steps */}
         <div className="mb-12 w-full px-4">
   <div className="relative flex items-center justify-between max-w-2xl mx-auto">
-    {/* Baris Background Abu-abu (Garis dasar) */}
     <div className="absolute top-6 left-0 w-full h-1 bg-gray-200 -z-10 rounded-full"></div>
     
-    {/* Baris Progress Berwarna (Garis aktif) */}
     <div 
-      className="absolute top-6 left-0 h-1 bg-gradient-to-r from-[#10B981] to-[#06B6D4] -z-10 transition-all duration-500 rounded-full"
+      className="absolute top-6 left-0 h-1 bg-linear-to-r from-[#10B981] to-[#06B6D4] -z-10 transition-all duration-500 rounded-full"
       style={{ width: `${((step - 1) / (4 - 1)) * 100}%` }}
     ></div>
 
     {[1, 2, 3, 4].map((s) => (
       <div key={s} className="flex flex-col items-center relative z-10">
-        {/* Bulatan Angka */}
         <div
           className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border-4 ${
             s <= step
-              ? 'bg-gradient-to-br from-[#10B981] to-[#06B6D4] text-white shadow-lg scale-110 border-white'
+              ? 'bg-linear-to-br from-[#10B981] to-[#06B6D4] text-white shadow-lg scale-110 border-white'
               : 'bg-white text-gray-400 border-gray-200'
           }`}
         >
@@ -99,11 +92,10 @@ export default function PickupRequest({ onNavigate }) {
 
         {/* Form Content */}
         <Card className="p-8 md:p-12 rounded-3xl border-2 border-[#10B981]/20 shadow-xl">
-          {/* Step 1: Waste Type */}
           {step === 1 && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-gradient-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
+                <div className="bg-linear-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
                   <Package className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl font-bold">Pilih Jenis Sampah</h2>
@@ -151,7 +143,7 @@ export default function PickupRequest({ onNavigate }) {
           {step === 2 && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-gradient-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
+                <div className="bg-linear-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
                   <Package className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl font-bold">Estimasi Berat Sampah</h2>
@@ -170,7 +162,7 @@ export default function PickupRequest({ onNavigate }) {
                 />
 
                 {formData.weight && (
-                  <Card className="mt-6 p-6 rounded-2xl bg-gradient-to-br from-[#F59E0B]/10 to-[#10B981]/10 border-2 border-[#F59E0B]/30">
+                  <Card className="mt-6 p-6 rounded-2xl bg-linear-to-br from-[#F59E0B]/10 to-[#10B981]/10 border-2 border-[#F59E0B]/30">
                     <div className="text-center">
                       <p className="text-muted-foreground mb-2">Estimasi Poin yang Didapat</p>
                       <p className="text-5xl font-bold text-[#F59E0B]">{estimatedPoints}</p>
@@ -188,7 +180,7 @@ export default function PickupRequest({ onNavigate }) {
           {step === 3 && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-gradient-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
+                <div className="bg-linear-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
                   <Calendar className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl font-bold">Waktu & Lokasi Penjemputan</h2>
@@ -218,7 +210,7 @@ export default function PickupRequest({ onNavigate }) {
                 </div>
 
                 <div>
-                  <Label htmlFor="address" className="text-lg mb-2 block flex items-center gap-2">
+                  <Label htmlFor="address" className="text-lg mb-2 block items-center gap-2">
                     <MapPin className="w-5 h-5 text-[#10B981]" />
                     Alamat Penjemputan
                   </Label>
@@ -237,13 +229,13 @@ export default function PickupRequest({ onNavigate }) {
           {step === 4 && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-gradient-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
+                <div className="bg-linear-to-br from-[#10B981] to-[#06B6D4] p-3 rounded-2xl">
                   <CheckCircle className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl font-bold">Konfirmasi Detail Penjemputan</h2>
               </div>
 
-              <Card className="p-6 rounded-2xl bg-gradient-to-br from-[#10B981]/5 to-[#06B6D4]/5 border-2 border-[#10B981]/20">
+              <Card className="p-6 rounded-2xl bg-linear-to-br from-[#10B981]/5 to-[#06B6D4]/5 border-2 border-[#10B981]/20">
                 <div className="space-y-4">
                   <div className="flex justify-between py-3 border-b border-gray-200">
                     <span className="text-muted-foreground">Jenis Sampah:</span>
@@ -265,7 +257,7 @@ export default function PickupRequest({ onNavigate }) {
                     <span className="text-muted-foreground">Alamat:</span>
                     <span className="font-semibold text-right">{formData.address}</span>
                   </div>
-                  <div className="flex justify-between py-3 bg-gradient-to-r from-[#F59E0B]/10 to-[#10B981]/10 px-4 rounded-xl">
+                  <div className="flex justify-between py-3 bg-linear-to-r from-[#F59E0B]/10 to-[#10B981]/10 px-4 rounded-xl">
                     <span className="text-muted-foreground">Estimasi Poin:</span>
                     <span className="text-2xl font-bold text-[#F59E0B]">{estimatedPoints} poin</span>
                   </div>
@@ -303,7 +295,7 @@ export default function PickupRequest({ onNavigate }) {
           (step === 2 && !formData.weight) ||
           (step === 3 && (!formData.date || !formData.time))
         }
-        className="w-full bg-gradient-to-r from-[#10B981] to-[#06B6D4] hover:opacity-90 text-white rounded-2xl py-6"
+        className="w-full bg-linear-to-r from-[#10B981] to-[#06B6D4] hover:opacity-90 text-white rounded-2xl py-6"
       >
         Lanjut
         <ArrowRight className="w-5 h-5 ml-2" />
@@ -311,7 +303,7 @@ export default function PickupRequest({ onNavigate }) {
     ) : (
       <Button
         onClick={handleSubmit}
-        className="w-full bg-gradient-to-r from-[#10B981] to-[#06B6D4] hover:opacity-90 text-white rounded-2xl py-6 shadow-lg shadow-emerald-500/20"
+        className="w-full bg-linear-to-r from-[#10B981] to-[#06B6D4] hover:opacity-90 text-white rounded-2xl py-6 shadow-lg shadow-emerald-500/20"
       >
         <CheckCircle className="w-5 h-5 mr-2" />
         Ajukan Penjemputan
