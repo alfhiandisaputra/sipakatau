@@ -42,24 +42,16 @@ Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi
 
 - **Email:** baco@example.com
 - **Password:** password123
-- **Poin:** 870 poin
-- **Level:** Warrior (Level 3)
+- **Poin:** 9000 poin
+- **Level:** Master (Level 4)
 - **Role:** user
-
-### Admin SIPAKATAU
-
-- **Email:** admin@example.com
-- **Password:** admin123
-- **Poin:** 500 poin
-- **Level:** Warrior
-- **Role:** admin
 
 ### User Lainnya untuk Leaderboard:
 
-1. **Siti Nurhaliza** - 1250 poin (Master)
-2. **Agus Pratama** - 650 poin (Warrior)
-3. **Dewi Lestari** - 980 poin (Warrior)
-4. **Rizky Ramadhan** - 420 poin (Sadar Lingkungan)
+1. **Siti Nurhaliza** - 1250 poin (Warrior)
+2. **Agus Pratama** - 650 poin (Sadar Lingkungan)
+3. **Dewi Lestari** - 980 poin (Sadar Linkungan)
+4. **Rizky Ramadhan** - 420 poin (Pemula)
 
 ## 🚀 Instalasi & Penggunaan
 

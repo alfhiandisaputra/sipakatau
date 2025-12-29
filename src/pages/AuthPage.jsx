@@ -134,7 +134,7 @@ export default function AuthPage({ onNavigate }) {
                   <p className="text-emerald-50 italic text-lg">
                     "Bergabung dengan SIPAKATAU mengubah cara saya melihat sampah. Sekarang setiap botol plastik adalah poin berharga!"
                   </p>
-                  <p className="text-emerald-200 mt-2 font-medium">— Budi Santoso, Anggota sejak 2024</p>
+                  <p className="text-emerald-200 mt-2 font-medium">— Baco Santoso, Anggota sejak 2024</p>
                 </div>
               </div>
             </div>
@@ -157,18 +157,16 @@ export default function AuthPage({ onNavigate }) {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex justify-center mb-8">
-            <div 
-              onClick={() => onNavigate('home')}
-              className="flex items-center gap-3 cursor-pointer group"
-            >
-              <div className="bg-linear-to-br from-emerald-500 to-teal-500 p-3 rounded-2xl group-hover:scale-105 transition-transform">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h1 className="text-2xl font-bold text-gray-900">SIPAKATAU</h1>
+          <div 
+            onClick={() => onNavigate('home')}
+            className="flex flex-col items-center cursor-pointer group"
+          >
+            <div className="rounded-2xl group-hover:scale-105 transition-transform">
+              <img src="/sipakatau.svg" alt="logo" className='w-15 h-15' />
             </div>
+            <h1 className="text-2xl font-bold text-gray-900">SIPAKATAU</h1>
           </div>
+        </div>
 
           {/* Form Container */}
           <Card className="p-8 rounded-3xl shadow-xl border border-gray-200 bg-white">
@@ -206,18 +204,6 @@ export default function AuthPage({ onNavigate }) {
                   Daftar
                 </div>
               </button>
-            </div>
-
-            {/* Form Title */}
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                {isLogin ? 'Masuk ke Akun' : 'Buat Akun Baru'}
-              </h2>
-              <p className="text-gray-600">
-                {isLogin 
-                  ? 'Selamat datang kembali! Masuk untuk melanjutkan.' 
-                  : 'Bergabunglah dengan komunitas kami.'}
-              </p>
             </div>
 
             {/* Render Form */}

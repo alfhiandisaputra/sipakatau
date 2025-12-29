@@ -47,7 +47,7 @@ export default function LoginForm({ onSubmit, loading, onToggleForm }) {
           <KeyRound className="w-8 h-8 text-white" />
         </div>
         <h2 className="text-3xl font-bold text-gray-900">Masuk ke Akun</h2>
-        <p className="text-gray-600 mt-2">Masukkan kredensial Anda untuk melanjutkan</p>
+        <p className="text-gray-600 mt-2">Selamat datang kembali! Masuk untuk melanjutkan.</p>
       </div>
 
       {/* Error Message */}

@@ -9,38 +9,38 @@ const levels = [
   { 
     name: 'Pemula', 
     minPoints: 0, 
-    maxPoints: 99, 
+    maxPoints: 499, 
     color: 'from-emerald-400 to-emerald-300',
     Icon: Sprout,
     iconColor: 'text-emerald-600'
   },
   { 
     name: 'Sadar Lingkungan', 
-    minPoints: 100, 
-    maxPoints: 499, 
+    minPoints: 500, 
+    maxPoints: 999, 
     color: 'from-emerald-400 to-emerald-300',
     Icon: Leaf,
     iconColor: 'text-emerald-600'
   },
   { 
     name: 'Warrior', 
-    minPoints: 500, 
-    maxPoints: 999, 
+    minPoints: 1000, 
+    maxPoints: 4999, 
     color: 'from-teal-500 to-emerald-400',
     Icon: Shield,
     iconColor: 'text-teal-600'
   },
   { 
     name: 'Master', 
-    minPoints: 1000, 
-    maxPoints: 4999, 
+    minPoints: 5000, 
+    maxPoints: 9999, 
     color: 'from-amber-500 to-yellow-400',
     Icon: Crown,
     iconColor: 'text-amber-600'
   },
   { 
-    name: 'Planet Hero', 
-    minPoints: 5000, 
+    name: 'Planet Hero',
+    minPoints: 10000, 
     maxPoints: Infinity, 
     color: 'from-purple-500 to-pink-400',
     Icon: Trophy,

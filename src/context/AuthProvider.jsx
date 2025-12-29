@@ -1,4 +1,3 @@
-// src/context/AuthProvider.jsx
 import { useState, useEffect, useMemo } from 'react';
 import { AuthContext } from './AuthContext';
 
@@ -34,6 +33,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem('sipakatau_user');
+    window.location.href = '/';
   };
 
   const contextValue = useMemo(() => ({

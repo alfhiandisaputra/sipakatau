@@ -9,7 +9,7 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2024-01-15',
-    level: 'Warrior' 
+    level: 'Master'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ export const mockUsers = [
     role: 'admin',
     avatar: null,
     joinDate: '2023-11-20',
-    level: 'Warrior'
+    level: 'Sadar Lingkungan'
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2024-02-10',
-    level: 'Master' 
+    level: 'Warrior'
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2024-03-05',
-    level: 'Warrior' 
+    level: 'Sadar Lingkungan'
   },
   {
     id: 5,
@@ -53,7 +53,7 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2024-01-25',
-    level: 'Warrior'
+    level: 'Sadar Lingkungan'
   },
   {
     id: 6,
@@ -64,7 +64,7 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2024-03-15',
-    level: 'Sadar Lingkungan' 
+    level: 'Pemula'
   },
   {
     id: 7,
@@ -75,7 +75,7 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2024-03-20',
-    level: 'Pemula' 
+    level: 'Pemula'
   },
   {
     id: 8,
@@ -86,9 +86,10 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2023-12-01',
-    level: 'Planet Hero' 
+    level: 'Master'
   }
 ];
+
 
 export const validateUser = (email, password) => {
   return mockUsers.find(user => 

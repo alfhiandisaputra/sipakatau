@@ -55,7 +55,7 @@ function TrendIndicator({ trend }) {
   }
   
   return (
-    <div className="flex items-center text-gray-400">
+    <div className="invisible flex items-center text-gray-400">
       <Minus className="w-4 h-4" />
       <span className="text-xs font-medium ml-1">0</span>
     </div>

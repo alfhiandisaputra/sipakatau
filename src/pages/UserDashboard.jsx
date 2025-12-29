@@ -74,38 +74,6 @@ export default function UserDashboard({ onNavigate }) {
     );
   }
 
-  if (currentUser.role === 'admin') {
-    return (
-      <LayoutWrapper user={currentUser}>
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">
-              Anda sedang login sebagai Admin
-            </h1>
-            <p className="text-gray-600 mb-6">
-              Untuk melihat dashboard user, silakan login dengan akun user biasa
-            </p>
-            <Button
-              onClick={() => onNavigate('admin-dashboard')}
-              variant="primary"
-              className="rounded-2xl mr-4"
-            >
-              Ke Dashboard Admin
-            </Button>
-            <Button
-              onClick={() => {
-                onNavigate('auth');
-              }}
-              variant="outline"
-              className="rounded-2xl"
-            >
-              Login sebagai User
-            </Button>
-          </div>
-        </div>
-      </LayoutWrapper>
-    );
-  }
 
   return (
     <LayoutWrapper user={currentUser}>
@@ -262,7 +230,6 @@ export default function UserDashboard({ onNavigate }) {
             <Card className="p-6 rounded-3xl">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-gray-900">Papan Peringkat</h2>
-                  <span className="text-sm text-gray-500">Minggu ini</span>
                 </div>
                 <Leaderboard 
                   users={sortedUsersForLeaderboard} 

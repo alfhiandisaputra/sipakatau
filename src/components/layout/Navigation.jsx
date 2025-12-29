@@ -22,7 +22,7 @@ export default function Navigation({ currentPage, onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, logout } = useAuth(); 
 
-  const EXCLUDED_PAGES = ['auth', 'admin-dashboard'];
+  const EXCLUDED_PAGES = ['auth'];
 
   if(EXCLUDED_PAGES.includes(currentPage)) {
     return null;
@@ -325,7 +325,7 @@ export default function Navigation({ currentPage, onNavigate }) {
         </div>
       )}
 
-      {/* Bottom Navigation (Mobile) - Hanya untuk user yang login */}
+      {/* Bottom Navigation (Mobile) */}
       {user && (
         <nav className="md:hidden fixed bottom-0 left-0 right-0 glass-effect border-t z-50">
           <div className="grid grid-cols-5 gap-1 px-1 py-2">

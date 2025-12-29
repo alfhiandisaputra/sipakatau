@@ -9,7 +9,7 @@ import ScannerPage from './pages/ScannerPage';
 import MapPage from './pages/MapPage';
 import PickupRequestPage from './pages/PickupRequestPage';
 import RewardsPage from './pages/RewardsPage';
-import AdminDashboard from './pages/AdminDashboard';
+
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -31,8 +31,6 @@ function App() {
         return user ? <PickupRequestPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
       case 'rewards':
         return user ? <RewardsPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
-      case 'admin':
-        return user?.role === 'admin' ? <AdminDashboard onNavigate={setCurrentPage} /> : <LandingPage onNavigate={setCurrentPage} />;
       default:
         return <LandingPage onNavigate={setCurrentPage} />;
     }
