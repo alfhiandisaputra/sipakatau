@@ -80,7 +80,7 @@ export default function Navigation({ currentPage, onNavigate }) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:block fixed top-0 left-0 right-0 glass-effect border-b z-50 h-20">
+      <nav className="hidden md:block fixed top-0 left-0 right-0 glass-effect border-b z-990 h-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -177,7 +177,7 @@ export default function Navigation({ currentPage, onNavigate }) {
       </nav>
 
       {/* Mobile Top Navigation */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 glass-effect border-b z-50 h-16">
+      <nav className="md:hidden fixed top-0 left-0 right-0 glass-effect border-b z-990 h-16">
         <div className="flex items-center justify-between px-4 h-16">
           <div 
             onClick={handleLogoClick}

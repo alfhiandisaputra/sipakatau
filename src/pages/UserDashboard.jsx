@@ -116,7 +116,7 @@ export default function UserDashboard({ onNavigate }) {
 
               {/* Eco Level */}
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Level Anda</h2>
+            {/* <h2 className="text-xl font-bold text-gray-900 mb-4">Level Anda</h2> */}
             <EcoLevel 
               points={currentUser.points}
               level={currentUser.level}
@@ -226,11 +226,14 @@ export default function UserDashboard({ onNavigate }) {
 
             {/* Right Column - Leaderboard & Goals */}
             <div className="space-y-8">
+               <div className="invisible flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-bold text-gray-900">invisible</h2>
+              </div>
               {/* Leaderboard */}
             <Card className="p-6 rounded-3xl">
-                <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold text-gray-900">Papan Peringkat</h2>
-                </div>
+              </div>
                 <Leaderboard 
                   users={sortedUsersForLeaderboard} 
                   currentUserId={currentUser.id} 

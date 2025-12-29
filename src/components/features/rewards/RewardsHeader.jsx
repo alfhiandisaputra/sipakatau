@@ -3,7 +3,7 @@ import { ArrowLeft, Gift, Award } from 'lucide-react';
 
 const RewardsHeader = ({ user, onBack }) => {
   const userPoints = user?.points || 0;
-  const redeemedPoints = user?.redeemedPoints || 15300;
+  const redeemedPoints = user?.redeemedPoints || 500;
 
   return (
     <div className="bg-linear-to-r from-amber-500 to-emerald-500">

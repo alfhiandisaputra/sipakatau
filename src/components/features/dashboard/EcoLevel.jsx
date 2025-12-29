@@ -95,6 +95,7 @@ export default function EcoLevel({ points, level: userLevel }) {
 
   return (
     <Card className="p-6 rounded-3xl">
+      <h2 className="text-xl font-bold text-gray-900 mb-4">Level Anda</h2>
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className={`p-3 rounded-xl ${currentLevel.iconColor.replace('text-', 'bg-')}20`}>
