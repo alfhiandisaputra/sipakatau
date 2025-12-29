@@ -7,12 +7,25 @@ const ScannerHeader = ({ user, onBack }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
+            {/* Tombol Back yang dioptimalkan */}
             <button
+              type="button"
               onClick={onBack}
-              className="bg-white/20 backdrop-blur-lg rounded-2xl p-3 hover:bg-white/30 transition-colors"
+              className="
+                group
+                bg-white/20 backdrop-blur-lg rounded-2xl 
+                p-2 md:p-2.5 
+                hover:bg-white/40 hover:shadow-md 
+                transition-all duration-200 active:scale-95 
+                border border-white/10 cursor-pointer
+              "
             >
-              <ArrowLeft className="w-6 h-6 text-white" />
+              <ArrowLeft 
+                className="w-5 h-5 md:w-6 md:h-6 text-white transition-transform group-hover:-translate-x-1" 
+                strokeWidth={2.5} 
+              />
             </button>
+
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white">
                 AI Waste Scanner
@@ -23,15 +36,18 @@ const ScannerHeader = ({ user, onBack }) => {
             </div>
           </div>
           
+          {/* User Points Card (Desktop Only) */}
           <div className="hidden md:block">
             <div className="bg-white/20 backdrop-blur-lg rounded-2xl p-4">
               <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-br from-[#F59E0B] to-[#10B981] bg-white p-3 rounded-xl">
+                <div className="bg-gradient-to-br from-[#F59E0B] to-[#10B981] p-3 rounded-xl">
                   <Award className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <p className="text-emerald-100 text-sm">Total Poin Anda</p>
-                  <p className="text-3xl font-bold text-white">{user?.points || 0}</p>
+                  <p className="text-3xl font-bold text-white">
+                    {user?.points?.toLocaleString() || 0}
+                  </p>
                 </div>
               </div>
             </div>
