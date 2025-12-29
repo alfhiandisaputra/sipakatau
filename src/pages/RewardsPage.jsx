@@ -18,7 +18,7 @@ export default function RewardsPage({ onNavigate }) {
   const { user } = useAuth();
 
   const userPoints = user?.points || 8450;
-  const totalRedeemed = user?.redeemedPoints || 15300;
+  const totalRedeemed = user?.redeemedPoints || 500;
 
   const filteredRewards = selectedCategory === 'Semua' 
     ? mockRewards 
@@ -112,7 +112,7 @@ export default function RewardsPage({ onNavigate }) {
                 <div className="flex justify-between items-center border-t border-gray-200 pt-3">
                   <span className="text-gray-600 font-medium">Total Reward Tertukar</span>
                   <span className="font-bold text-gray-900">
-                    {Math.floor(totalRedeemed / 5000)} item
+                    {Math.floor(totalRedeemed / 500)} item
                   </span>
                 </div>
               </div>
