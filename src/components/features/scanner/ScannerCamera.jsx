@@ -6,7 +6,6 @@ import { cn } from '../../../utils';
 const ScannerCamera = ({ isScanning, onCapture, capturedImage, onRetake }) => {
   const [scanLinePosition, setScanLinePosition] = useState(0);
 
-  // Animasi garis scan
   useEffect(() => {
     if (isScanning) {
       const interval = setInterval(() => {
@@ -17,7 +16,6 @@ const ScannerCamera = ({ isScanning, onCapture, capturedImage, onRetake }) => {
   }, [isScanning]);
 
   const handleCapture = () => {
-    // Simulasi capture image
     const mockImages = [
       'https://images.unsplash.com/photo-1562077981-4d7eafd9c8c6?w=400',
       'https://images.unsplash.com/photo-1596521864200-6c6d6d8f6e4a?w=400',
@@ -61,11 +59,9 @@ const ScannerCamera = ({ isScanning, onCapture, capturedImage, onRetake }) => {
 
   return (
     <div className="relative rounded-3xl overflow-hidden bg-linear-to-br from-gray-900 to-black">
-      {/* Camera View */}
       <div className="aspect-video relative flex items-center justify-center">
         {isScanning ? (
           <div className="w-full h-full relative">
-            {/* Scanner Frame */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="border-4 border-emerald-500/50 rounded-2xl w-64 h-64 relative">
                 {/* Corner decorations */}
@@ -76,19 +72,17 @@ const ScannerCamera = ({ isScanning, onCapture, capturedImage, onRetake }) => {
               </div>
             </div>
             
-            {/* Scanning line */}
             <div 
               className="absolute left-0 right-0 h-1 bg-linear-to-r from-transparent via-emerald-500 to-transparent"
               style={{ top: `${scanLinePosition}%` }}
             />
             
-            {/* Scanning dots */}
             <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
             <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
             <div className="absolute bottom-1/4 left-1/4 w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
             <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
             
-            {/* Instruction */}
+
             <div className="absolute bottom-8 left-0 right-0 text-center">
               <p className="text-white font-medium animate-pulse">
                 Arahkan kamera ke sampah...
@@ -102,13 +96,13 @@ const ScannerCamera = ({ isScanning, onCapture, capturedImage, onRetake }) => {
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">AI Waste Scanner</h3>
             <p className="text-gray-300 max-w-md mx-auto">
-              Identifikasi jenis sampah secara instan dan dapatkan poin
+              Identifikasi jenis sampah dan pelajari cara mengelolanya dengan benar
             </p>
           </div>
         )}
       </div>
 
-      {/* Capture Button */}
+
       {isScanning && (
         <div className="absolute bottom-6 left-0 right-0 flex justify-center">
           <button
@@ -121,7 +115,6 @@ const ScannerCamera = ({ isScanning, onCapture, capturedImage, onRetake }) => {
         </div>
       )}
 
-      {/* Scanner Status */}
       <div className="absolute top-4 left-4">
         <div className={cn(
           "px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm",

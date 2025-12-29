@@ -44,9 +44,29 @@ export const ROUTES = {
 };
 
 export const WASTE_TYPES = {
-  PLASTIC: { id: 1, name: 'Plastik', pointsPerKg: 100, color: COLORS.emerald[500] },
-  PAPER: { id: 2, name: 'Kertas', pointsPerKg: 80, color: COLORS.teal[500] },
-  METAL: { id: 3, name: 'Logam', pointsPerKg: 150, color: '#8B5CF6' },
-  GLASS: { id: 4, name: 'Kaca', pointsPerKg: 120, color: '#F59E0B' },
-  ORGANIC: { id: 5, name: 'Organik', pointsPerKg: 50, color: '#84CC16' }
+  PLASTIC: {
+    name: 'Plastik',
+    color: '#3B82F6',
+    description: 'Material sintetik yang membutuhkan waktu lama untuk terurai'
+  },
+  PAPER: {
+    name: 'Kertas',
+    color: '#10B981',
+    description: 'Material selulosa yang mudah didaur ulang'
+  },
+  METAL: {
+    name: 'Logam',
+    color: '#F59E0B',
+    description: 'Material konduktif dengan nilai daur ulang tinggi'
+  },
+  GLASS: {
+    name: 'Kaca',
+    color: '#8B5CF6',
+    description: 'Material inert yang 100% bisa didaur ulang'
+  },
+  ORGANIC: {
+    name: 'Organik',
+    color: '#EF4444',
+    description: 'Material biodegradable untuk kompos'
+  }
 };

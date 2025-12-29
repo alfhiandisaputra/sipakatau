@@ -5,7 +5,7 @@ export const mockUsers = [
     name: 'Baco Santoso',
     email: 'baco@example.com',
     password: 'password123',
-    points: 870,
+    points: 9000,
     role: 'user',
     avatar: null,
     joinDate: '2024-01-15',

@@ -1,12 +1,11 @@
-// src/components/features/scanner/ScannerResults.jsx
-import { CheckCircle, AlertTriangle, Recycle, Award } from 'lucide-react';
+import { CheckCircle, AlertTriangle, BookOpen, Info, Share2, Save } from 'lucide-react';
 import { WASTE_TYPES } from '../../../utils/constants';
+import React from 'react';
 
 const ScannerResults = ({ 
   detectedWaste, 
   confidence, 
-  points,
-  onConfirm,
+  onSave,
   onManualSelect,
   isLoading 
 }) => {
@@ -76,7 +75,7 @@ const ScannerResults = ({
           </div>
           <div>
             <h3 className="text-2xl font-bold text-gray-900">Sampah Teridentifikasi!</h3>
-            <p className="text-gray-600">AI mendeteksi sampah Anda</p>
+            <p className="text-gray-600">Temukan informasi edukasi tentang {detectedWaste.name}</p>
           </div>
         </div>
         <div className="text-right">
@@ -85,63 +84,78 @@ const ScannerResults = ({
         </div>
       </div>
 
-      {/* Waste Info */}
       <div className="bg-white rounded-2xl p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h4 className="font-bold text-gray-900 text-lg">{detectedWaste.name}</h4>
-            <div className="flex items-center gap-2 mt-2">
-              <span 
-                className="px-3 py-1 rounded-full text-sm font-medium text-white"
-                style={{ backgroundColor: wasteType.color }}
-              >
-                {wasteType.name}
-              </span>
-              <span className="text-sm text-gray-500">
-                {wasteType.pointsPerKg} poin/kg
-              </span>
-            </div>
-          </div>
-          <div className="p-3 rounded-xl bg-emerald-100">
-            <Recycle className="w-6 h-6 text-emerald-600" />
-          </div>
-        </div>
-
-        <p className="text-gray-600 mb-4">{detectedWaste.description}</p>
-        
-        {/* Tips */}
-        <div className="bg-gray-50 rounded-xl p-4 mt-4">
-          <p className="text-sm text-gray-700">
-            <span className="font-semibold">Tips:</span> {detectedWaste.recyclingTips}
-          </p>
-        </div>
-      </div>
-
-      {/* Points Calculation */}
-      <div className="bg-linear-to-r from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-100">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-amber-100">
-              <Award className="w-5 h-5 text-amber-600" />
-            </div>
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <div className="font-medium text-gray-900">Poin yang didapat</div>
-              <div className="text-sm text-gray-600">Estimasi untuk 1 kg</div>
+              <h4 className="font-bold text-gray-900 text-lg">{detectedWaste.name}</h4>
+              <div className="flex items-center gap-2 mt-2">
+                <span 
+                  className="px-3 py-1 rounded-full text-sm font-medium text-white"
+                  style={{ backgroundColor: wasteType.color }}
+                >
+                  {wasteType.name}
+                </span>
+                <span className="text-sm text-gray-500">
+                  {detectedWaste.category || 'Material Daur Ulang'}
+                </span>
+              </div>
+            </div>
+            <div className="p-3 rounded-xl bg-emerald-100">
+              {detectedWaste.icon && React.createElement(detectedWaste.icon, { 
+                className: "w-6 h-6 text-emerald-600" 
+              })}
             </div>
           </div>
-          <div className="text-right">
-            <div className="text-3xl font-bold text-amber-600">{points}</div>
-            <div className="text-sm text-gray-600">poin</div>
+
+          <p className="text-gray-600 mb-4">{detectedWaste.description}</p>
+          
+          <div className="bg-gray-50 rounded-xl p-4 mt-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Info className="w-5 h-5 text-emerald-600" />
+              <span className="font-semibold text-gray-900">Tips Daur Ulang:</span>
+            </div>
+            <p className="text-sm text-gray-700">{detectedWaste.recyclingTips}</p>
           </div>
         </div>
+      <div className="flex flex-col sm:flex-row gap-3">
+        <button
+          onClick={onSave}
+          className="flex-1 flex items-center justify-center gap-3 py-3 px-6 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 transition-colors shadow-sm"
+        >
+          <Save className="w-5 h-5" />
+          <span className="font-semibold">Simpan ke Riwayat Edukasi</span>
+        </button>
+        
+        <button
+          onClick={() => {
+            const shareText = `Saya baru belajar tentang ${detectedWaste.name} di EcoEdu Scanner! ${detectedWaste.recyclingTips}`;
+            if (navigator.share) {
+              navigator.share({
+                title: 'Edukasi Sampah',
+                text: shareText,
+                url: window.location.href,
+              });
+            } else {
+              navigator.clipboard.writeText(shareText);
+              alert('Teks telah disalin ke clipboard!');
+            }
+          }}
+          className="flex-1 flex items-center justify-center gap-3 py-3 px-6 rounded-xl bg-blue-500 text-white hover:bg-blue-600 transition-colors shadow-sm"
+        >
+          <Share2 className="w-5 h-5" />
+          <span className="font-semibold">Bagikan Edukasi</span>
+        </button>
       </div>
 
-      <button
-        onClick={onConfirm}
-        className="w-full mt-6 py-4 rounded-xl bg-linear-to-r from-emerald-500 to-teal-500 text-white font-bold text-lg shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all"
-      >
-        Konfirmasi & Dapatkan Poin
-      </button>
+      <div className="mt-6 text-center">
+        <button
+          onClick={() => document.getElementById('education-content')?.scrollIntoView({ behavior: 'smooth' })}
+          className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-medium"
+        >
+          <BookOpen className="w-5 h-5" />
+          Lihat Detail Edukasi Lengkap
+        </button>
+      </div>
     </div>
   );
 };
