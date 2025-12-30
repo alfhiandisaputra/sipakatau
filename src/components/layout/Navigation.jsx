@@ -67,12 +67,9 @@ export default function Navigation() {
     setMobileMenuOpen(false);
   };
 
+  // BAGIAN YANG DIUBAH: Selalu arahkan ke '/'
   const handleLogoClick = () => {
-    if (user) {
-      navigate('/dashboard');
-    } else {
-      navigate('/');
-    }
+    navigate('/');
   };
 
   return (

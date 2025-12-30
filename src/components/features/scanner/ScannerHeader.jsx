@@ -31,7 +31,7 @@ const ScannerHeader = ({ user, onBack }) => {
                 AI Waste Scanner
               </h1>
               <p className="text-emerald-100 mt-2">
-                Scan sampah, identifikasi, dapatkan poin
+                Scan sampah, kenali, dan kelola
               </p>
             </div>
           </div>
