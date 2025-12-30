@@ -1,6 +1,7 @@
 // src/pages/MapPage.jsx
 import { useState, useEffect, useRef } from 'react';
 import LayoutWrapper from '../components/layout/LayoutWrapper';
+import { useNavigate } from 'react-router-dom';
 import { 
   MapComponent,
   FilterBar,
@@ -21,7 +22,8 @@ import { useAuth } from '../hooks/useAuth';
 
 const DEFAULT_CENTER = [-4.3518, 119.8892];
 
-export default function MapPage({ onNavigate }) {
+export default function MapPage() {
+  const navigate = useNavigate();
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [userLocation, setUserLocation] = useState(DEFAULT_CENTER); 
   const [searchQuery, setSearchQuery] = useState('');
@@ -135,7 +137,7 @@ export default function MapPage({ onNavigate }) {
 
   const handleSchedulePickup = () => {
     if (selectedLocation) {
-      onNavigate('pickup');
+      navigate('/pickup');
     } else {
       alert('Pilih lokasi terlebih dahulu untuk menjadwalkan penjemputan');
     }
@@ -201,7 +203,7 @@ export default function MapPage({ onNavigate }) {
               Silakan login untuk melihat peta Kabupaten Soppeng
             </h1>
             <Button
-              onClick={() => onNavigate('auth')}
+              onClick={() => navigate('/auth')}
               variant="primary"
               className="rounded-2xl"
             >
@@ -218,8 +220,7 @@ export default function MapPage({ onNavigate }) {
       <div className="min-h-screen bg-gray-50">
         <MapHeader
           user={user}
-          onBack={() => onNavigate('dashboard')}
-          onNavigate={onNavigate}
+          onBack={() => navigate('/dashboard')}
           onShareMap={handleShareMap}
         />
 
@@ -237,7 +238,6 @@ export default function MapPage({ onNavigate }) {
             onViewModeChange={setViewMode}
           />
 
-          {/* View Mode & Stats */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <div className="text-sm text-gray-600">
               <span className="font-medium">{filteredLocations.length}</span> lokasi ditemukan
@@ -260,7 +260,6 @@ export default function MapPage({ onNavigate }) {
             )}
           </div>
 
-
           {showWasteFilter && (
             <div className="mb-6">
               <WasteCategoryFilter
@@ -270,7 +269,6 @@ export default function MapPage({ onNavigate }) {
             </div>
           )}
 
-          {/* Grid Layout*/}
           {viewMode === 'map' ? (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-6">
@@ -402,7 +400,6 @@ export default function MapPage({ onNavigate }) {
               </div>
             </div>
           ) : (
-            // List View 
             <div className="space-y-6">
               <LocationList
                 locations={filteredLocations}

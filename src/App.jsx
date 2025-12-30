@@ -1,7 +1,6 @@
 // src/App.jsx
-import { useState } from 'react';
-import Navigation from './components/layout/Navigation';
-import { useAuth } from './hooks/useAuth';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/layout/MainLayout';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import UserDashboard from './pages/UserDashboard';
@@ -10,48 +9,81 @@ import MapPage from './pages/MapPage';
 import PickupRequestPage from './pages/PickupRequestPage';
 import RewardsPage from './pages/RewardsPage';
 import ProfilePage from './pages/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
+import { useAuth } from './hooks/useAuth';
+import LeaderboardPage from './pages/LeaderboardPage';
 
+function ProtectedRoute({ children }) {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/auth" replace />;
+}
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const { user, isLoading } = useAuth();
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <LandingPage onNavigate={setCurrentPage} />;
-      case 'auth':
-        return <AuthPage onNavigate={setCurrentPage} />;
-      case 'dashboard':
-        return user ? <UserDashboard onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
-      case 'scanner':
-        return user ? <ScannerPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
-      case 'map':
-        return user ? <MapPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
-      case 'pickup':
-        return user ? <PickupRequestPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
-      case 'profile':
-        return user ? <ProfilePage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
-      case 'rewards':
-        return user ? <RewardsPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
-      default:
-        return <LandingPage onNavigate={setCurrentPage} />;
-    }
-  };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
-      <main>{renderPage()}</main>
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <UserDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/scanner" 
+          element={
+            <ProtectedRoute>
+              <ScannerPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/map" 
+          element={
+            <ProtectedRoute>
+              <MapPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/pickup" 
+          element={
+            <ProtectedRoute>
+              <PickupRequestPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/rewards" 
+          element={
+            <ProtectedRoute>
+              <RewardsPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/leaderboard" 
+          element={
+            <ProtectedRoute>
+              <LeaderboardPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }
 

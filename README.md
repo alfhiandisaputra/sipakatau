@@ -64,11 +64,11 @@ Masyarakat seringkali kesulitan dalam memilah sampah dan tidak memiliki motivasi
 
 1. **Clone Repositori**
 
-   ```bash
+```bash
    git clone https://github.com/username/sipakatau-web.git
    cd sipakatau-web
 
-   ```
+```
 
 2. **Install Dependencies**
 
@@ -98,7 +98,3 @@ Efryan - Frontend & UI/UX Designer
 Ferdy - Frontend Developer
 
 Alfhian - Research & Copywriter
-
-```
-
-```

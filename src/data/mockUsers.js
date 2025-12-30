@@ -42,7 +42,7 @@ export const mockUsers = [
     role: 'user',
     avatar: null,
     joinDate: '2024-03-05',
-    level: 'Sadar Lingkungan'
+    level: 'Planet Hero'
   },
   {
     id: 5,

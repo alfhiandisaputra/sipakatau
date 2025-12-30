@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import LayoutWrapper from '../components/layout/LayoutWrapper';
 import RewardsHeader from '../components/features/rewards/RewardsHeader';
+import { useNavigate } from 'react-router-dom';
 import { 
   CategoryFilter,
   RewardsGrid,
@@ -12,7 +13,8 @@ import { useAuth } from '../hooks/useAuth';
 
 const categories = ['Semua', 'Voucher Digital', 'Sembako', 'Diskon Lokal'];
 
-export default function RewardsPage({ onNavigate }) {
+export default function RewardsPage() {
+  const navigate = useNavigate()
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [selectedReward, setSelectedReward] = useState(null);
   const { user } = useAuth();
@@ -42,7 +44,7 @@ export default function RewardsPage({ onNavigate }) {
               Silakan login untuk melihat rewards
             </h1>
             <button
-              onClick={() => onNavigate('auth')}
+              onClick={() => navigate('/auth')}
               className="px-6 py-3 rounded-2xl bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition-colors"
             >
               Login Sekarang
@@ -58,7 +60,7 @@ export default function RewardsPage({ onNavigate }) {
       <div className="min-h-screen bg-gray-50">
         <RewardsHeader 
           user={user}
-          onBack={() => onNavigate('dashboard')}
+          onBack={() => navigate('/dashboard')}
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

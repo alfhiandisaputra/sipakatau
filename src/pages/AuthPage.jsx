@@ -4,15 +4,17 @@ import { Card, ImageWithFallback } from '../components/ui';
 import { LoginForm, RegisterForm } from '../components/features/auth';
 import { useAuth } from '../hooks/useAuth';
 import { cn } from '../utils';
+import { useNavigate } from 'react-router-dom';
 
-export default function AuthPage({ onNavigate }) {
+export default function AuthPage() {
+  const navigate = useNavigate()
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
   const handleAuthSuccess = (userData) => {
     login(userData);
-    onNavigate('dashboard');
+    navigate('/dashboard');
   };
 
   const handleSubmit = (userData) => {
@@ -41,7 +43,7 @@ export default function AuthPage({ onNavigate }) {
             {/* Logo */}
             <div className="mb-12">
               <div 
-                onClick={() => onNavigate('home')}
+                onClick={() => navigate('/home')}
                 className="inline-flex items-center gap-4 cursor-pointer group"
               >
                 <div className="bg-white rounded-2xl group-hover:scale-105 transition-transform">
@@ -158,7 +160,7 @@ export default function AuthPage({ onNavigate }) {
           {/* Mobile Logo */}
           <div className="lg:hidden flex justify-center mb-8">
           <div 
-            onClick={() => onNavigate('home')}
+            onClick={() => navigate('/home')}
             className="flex flex-col items-center cursor-pointer group"
           >
             <div className="rounded-2xl group-hover:scale-105 transition-transform">
@@ -225,7 +227,7 @@ export default function AuthPage({ onNavigate }) {
           {/* Back to Home */}
           <div className="mt-8 text-center">
             <button
-              onClick={() => onNavigate('home')}
+              onClick={() => navigate('/home')}
               className="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

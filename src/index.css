@@ -3,7 +3,6 @@
 /* src/index.css */
 @import "tailwindcss";
 
-/* Custom theme untuk Tailwind v4 */
 @theme {
   --color-emerald-500: #10b981;
   --color-emerald-600: #059669;
@@ -25,4 +24,44 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation-delay: 0.3s;
+}
+
+.animate-float-delay-2 {
+  animation-delay: 0.6s;
+}
+
+.animate-float-delay-3 {
+  animation-delay: 0.9s;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

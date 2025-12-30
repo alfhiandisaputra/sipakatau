@@ -3,10 +3,12 @@ import { ArrowLeft, Share2, Camera, MapPin } from 'lucide-react';
 import { Button } from '../../ui';
 import { getUserLevelBadge, getRankFromPoints } from '../../../utils'
 import { mockUsers } from '../../../data/mockUsers';
+import { useNavigate } from 'react-router-dom';
 
-const ProfileHeader = ({ user, onBack, onNavigate}) => {
+const ProfileHeader = ({ user, onBack}) => {
   const userBadge = getUserLevelBadge(user?.level);
   const userRank = getRankFromPoints(user?.points || 0, mockUsers);
+  const navigate = useNavigate();
   
   return (
     <div className="bg-linear-to-r from-emerald-500 to-teal-500">
@@ -70,7 +72,7 @@ const ProfileHeader = ({ user, onBack, onNavigate}) => {
           <div className="flex flex-wrap gap-3">
             <Button
               variant="outline"
-              onClick={() => onNavigate('map')}
+              onClick={() => navigate('/map')}
               className="bg-white/10 hover:bg-white/20 border-white text-white rounded-2xl"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,9 +1,10 @@
 // src/components/features/dashboard/QuickActions.jsx
 import { Scan, Truck, Gift, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const actions = [
   {
-    id: 'scanner',
+    id: '/scanner',
     title: 'Scan',
     subtitle: 'Dapatkan poin',
     icon: Scan,
@@ -11,7 +12,7 @@ const actions = [
     color: 'emerald',
   },
   {
-    id: 'pickup',
+    id: '/pickup',
     title: 'Pickup',
     subtitle: 'Jadwalkan',
     icon: Truck,
@@ -19,7 +20,7 @@ const actions = [
     color: 'blue',
   },
   {
-    id: 'rewards',
+    id: '/rewards',
     title: 'Hadiah',
     subtitle: 'Tukar poin',
     icon: Gift,
@@ -27,7 +28,7 @@ const actions = [
     color: 'amber',
   },
   {
-    id: 'map',
+    id: '/map',
     title: 'Peta',
     subtitle: 'Bank sampah',
     icon: MapPin,
@@ -63,7 +64,8 @@ const colorClasses = {
   },
 };
 
-export default function QuickActions({ onNavigate }) {
+export default function QuickActions() {
+    const navigate = useNavigate();
   return (
     <div className="mb-8">
       <h2 className="sr-only">Aksi Cepat</h2>
@@ -77,7 +79,7 @@ export default function QuickActions({ onNavigate }) {
           return (
             <button
               key={action.id}
-              onClick={() => onNavigate(action.id)}
+              onClick={() => navigate(action.id)}
               className={`
                 group relative overflow-hidden
                 flex flex-col items-center justify-center

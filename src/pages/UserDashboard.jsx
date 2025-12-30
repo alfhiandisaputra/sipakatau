@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Card, Button } from '../components/ui';
 import LayoutWrapper from '../components/layout/LayoutWrapper';
+import { useNavigate } from 'react-router-dom';
 import { 
   StatsCard, 
   EcoLevel, 
@@ -23,7 +24,8 @@ import { formatPoints, formatDate } from '../utils/formatters';
 import { cn } from '../utils';
 import { useAuth } from '../hooks/useAuth';
 
-export default function UserDashboard({ onNavigate }) {
+export default function UserDashboard() {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('all');
   const { user: currentUser } = useAuth();
   
@@ -53,38 +55,16 @@ export default function UserDashboard({ onNavigate }) {
     { id: 'reward', label: 'Reward' }
   ];
 
-  if (!currentUser) {
-    return (
-      <LayoutWrapper>
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">
-              Silakan login untuk melihat dashboard
-            </h1>
-            <Button
-              onClick={() => onNavigate('auth')}
-              variant="primary"
-              className="rounded-2xl"
-            >
-              Login Sekarang
-            </Button>
-          </div>
-        </div>
-      </LayoutWrapper>
-    );
-  }
-
   return (
     <LayoutWrapper user={currentUser}>
       <div className="min-h-screen bg-gray-50 md:pb-0">
         <DashboardHeader user={currentUser} />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
-          <QuickActions onNavigate={onNavigate} />
+          <QuickActions />
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-8">
-              {/* Stats Cards */}
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Statistik Anda</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -202,7 +182,7 @@ export default function UserDashboard({ onNavigate }) {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => onNavigate('scanner')}
+                    onClick={() => navigate('/scanner')}
                     className="mt-4"
                   >
                     Mulai Aktivitas
@@ -213,7 +193,7 @@ export default function UserDashboard({ onNavigate }) {
                 <Button
                   variant="ghost"
                   className="w-full mt-6 rounded-xl py-3"
-                  onClick={() => onNavigate('history')}
+                  onClick={() => navigate('/history')}
                 >
                   <History className="w-4 h-4 mr-2" />
                   Lihat Semua Aktivitas
@@ -239,7 +219,7 @@ export default function UserDashboard({ onNavigate }) {
                 <Button
                   variant="ghost"
                   className="w-full mt-6 rounded-xl"
-                  onClick={() => onNavigate('leaderboard')}
+                  onClick={() => navigate('/leaderboard')}
                 >
                   Lihat Peringkat Lengkap
                 </Button>
@@ -277,7 +257,7 @@ export default function UserDashboard({ onNavigate }) {
                 <Button
                   variant="primary"
                   className="w-full mt-6 rounded-xl"
-                  onClick={() => onNavigate('scanner')}
+                  onClick={() => navigate('/scanner')}
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Tambah Kontribusi
