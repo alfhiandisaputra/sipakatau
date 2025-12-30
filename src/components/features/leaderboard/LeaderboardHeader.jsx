@@ -9,7 +9,6 @@ export default function LeaderboardHeader({
   formatNumber,
   onBack
 }) {
-  // Bagian userTier dihapus karena info tier tidak lagi ditampilkan
   
   return (
     <div className="bg-linear-to-r from-amber-500 via-orange-500 to-yellow-500">
@@ -48,16 +47,14 @@ export default function LeaderboardHeader({
           
           {/* Section: User Rank Card */}
           <div className="w-full md:w-auto bg-white/20 backdrop-blur-xl rounded-2xl p-5 md:p-6 border border-white/30 min-w-full md:min-w-[320px] shadow-xl">
-            {/* Upper Part: Rank & Info */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                {/* Menggunakan bg default putih transparan karena userTier.bg dihapus */}
                 <div className="p-2.5 bg-white/80 rounded-xl shadow-inner">
                   {getRankIcon(userRank || 0)}
                 </div>
                 <div className="text-left">
                   <h3 className="font-bold text-white text-sm md:text-base">Peringkat Anda</h3>
-                  <p className="text-xs md:text-sm opacity-80 truncate max-w-[120px]">{currentUser.name}</p>
+                  <p className="text-xs md:text-sm opacity-80 truncate max-w-30">{currentUser.name}</p>
                 </div>
               </div>
               <div className="text-right">
@@ -68,7 +65,6 @@ export default function LeaderboardHeader({
               </div>
             </div>
 
-            {/* Lower Part: Stats Grid - Sekarang hanya 2 kolom agar seimbang */}
             <div className="grid grid-cols-2 gap-2 border-t border-white/10 pt-4">
               <div className="text-center md:text-left text-white border-r border-white/10">
                 <div className="text-[10px] md:text-xs opacity-70 uppercase font-medium">Poin</div>

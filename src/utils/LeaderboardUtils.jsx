@@ -20,10 +20,10 @@ export const getRankIcon = (rank) => {
 };
 
 export const getTier = (points) => {
-  if (points >= 5000) return { name: 'Master', color: 'text-amber-600', bg: 'bg-amber-100' };
   if (points >= 10000) return { name: 'Planet Hero', color: 'text-purple-600', bg: 'bg-purple-100' };
+  if (points >= 5000) return { name: 'Master', color: 'text-amber-600', bg: 'bg-amber-100' };
   if (points >= 1000) return { name: 'Warior', color: 'text-emerald-600', bg: 'bg-emerald-100' };
-  if (points >= 500) return { name: 'Pemula', color: 'text-emerald-600', bg: 'bg-amber-100' };
+  if (points >= 500) return { name: 'Pemula', color: 'text-emerald-600', bg: 'bg-emerald-100' };
   return { name: 'Beginner', color: 'text-gray-600', bg: 'bg-gray-100' };
 };
 

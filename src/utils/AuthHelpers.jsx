@@ -23,14 +23,14 @@ export const getUserLevelBadge = (level) => {
     'Pemula': { color: 'bg-gray-100 text-gray-800', label: 'Pemula' },
     'Sadar Lingkungan': { color: 'bg-green-100 text-green-800', label: 'Sadar Lingkungan' },
     'Warrior': { color: 'bg-blue-100 text-blue-800', label: 'Warrior' },
-    'Master': { color: 'bg-purple-100 text-purple-800', label: 'Master' }
+    'Master': { color: 'bg-purple-100 text-purple-800', label: 'Master' },
+    'Planet Hero': { color: 'bg-purple-100 text-purple-800', label: 'Planet Hero' }
   };
   
   return badges[level] || badges['Pemula'];
 };
 
 export const getRankFromPoints = (points, userList = mockUsers) => {
-  // Sort users by points descending
   const sortedUsers = [...userList].sort((a, b) => b.points - a.points);
   const rank = sortedUsers.findIndex(u => u.points <= points) + 1;
   return rank || sortedUsers.length + 1;
@@ -41,7 +41,8 @@ export const calculateLevelProgress = (points, level) => {
     'Pemula': 0,
     'Sadar Lingkungan': 500,
     'Warrior': 1000,
-    'Master': 5000
+    'Master': 5000,
+    'Planet Hero': 10000
   };
   
   const currentThreshold = levelThresholds[level] || 0;
@@ -56,10 +57,11 @@ export const calculateLevelProgress = (points, level) => {
 
 export const getNextLevelThreshold = (level) => {
   const thresholds = {
-    'Pemula': 500,
-    'Sadar Lingkungan': 1000,
-    'Warrior': 5000,
-    'Master': 10000
+    'Pemula': 0,
+    'Sadar Lingkungan': 500,
+    'Warrior': 1000,
+    'Master': 5000,
+    'Planet Hero': 10000
   };
   
   return thresholds[level] || 500;

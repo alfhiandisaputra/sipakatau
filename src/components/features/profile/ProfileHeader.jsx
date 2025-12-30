@@ -68,7 +68,6 @@ const ProfileHeader = ({ user, onBack}) => {
             </div>
           </div>
           
-          {/* Right Section - Actions */}
           <div className="flex flex-wrap gap-3">
             <Button
               variant="outline"

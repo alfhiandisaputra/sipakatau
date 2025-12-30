@@ -63,7 +63,6 @@ const LeaderboardRow = ({
           <div className={`px-3 py-1 rounded-full text-sm font-medium ${tier.bg} ${tier.color}`}>
             {tier.name}
           </div>
-          <div className="text-gray-700 font-medium">Lv. {user.level || 1}</div>
         </div>
       </td>
       

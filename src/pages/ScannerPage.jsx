@@ -37,31 +37,37 @@ export default function Scanner() {
   };
 
   const handleCapture = (image) => {
-    setCapturedImage(image);
-    setIsScanning(false);
-    setIsAnalyzing(true);
+  setCapturedImage(image);
+  setIsScanning(false);
+  setIsAnalyzing(true);
+  
+  setScannedResult(null);
+  setShowManualSelect(false);
+  
+  setTimeout(() => {
+    const random = Math.random();
+    if (random > 0.3) {
+      const randomIndex = Math.floor(Math.random() * wasteItems.length);
+      const result = {
+        ...wasteItems[randomIndex],
+        confidence: Math.floor(Math.random() * 30) + 70
+      };
+      setScannedResult(result);
     
-    setTimeout(() => {
-      const random = Math.random();
-      if (random > 0.3) {
-        const randomIndex = Math.floor(Math.random() * wasteItems.length);
-        const result = {
-          ...wasteItems[randomIndex],
-          confidence: Math.floor(Math.random() * 30) + 70
-        };
-        setScannedResult(result);
-        
-        setScanHistory(prev => [{
-          ...result,
-          id: Date.now(),
-          timestamp: new Date().toISOString()
-        }, ...prev.slice(0, 4)]);
-      } else {
-        setScannedResult(null);
-      }
-      setIsAnalyzing(false);
-    }, 2000);
-  };
+      setScanHistory(prev => [{
+        ...result,
+        id: Date.now(),
+        timestamp: new Date().toISOString()
+      }, ...prev.slice(0, 4)]);
+    } else {
+      setScannedResult({ 
+        isError: true,
+        message: "Tidak dapat mengidentifikasi sampah"
+      });
+    }
+    setIsAnalyzing(false);
+  }, 2000);
+};
 
   const handleRetake = () => {
     setCapturedImage(null);
@@ -70,8 +76,9 @@ export default function Scanner() {
   };
 
   const handleManualSelect = () => {
-    setShowManualSelect(true);
-  };
+  setShowManualSelect(true);
+  setScannedResult(null);
+};
 
   const handleWasteTypeSelect = (type) => {
     setSelectedWasteType(type);

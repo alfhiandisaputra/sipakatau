@@ -21,7 +21,7 @@ const ScannerResults = ({
     );
   }
 
-  if (!detectedWaste) {
+  if (detectedWaste?.isError) {
     return (
       <div className="rounded-3xl p-8 bg-linear-to-br from-red-50 to-orange-50 border border-red-100">
         <div className="flex items-center gap-4 mb-6">
@@ -30,7 +30,7 @@ const ScannerResults = ({
           </div>
           <div>
             <h3 className="text-2xl font-bold text-gray-900">Tidak Terdeteksi</h3>
-            <p className="text-gray-600">Sistem tidak dapat mengidentifikasi sampah</p>
+            <p className="text-gray-600">{detectedWaste.message}</p>
           </div>
         </div>
         
@@ -64,6 +64,9 @@ const ScannerResults = ({
     );
   }
 
+  if (!detectedWaste || !detectedWaste.name) {
+    return null;
+  }
   const wasteType = WASTE_TYPES[detectedWaste.type] || WASTE_TYPES.PLASTIC;
 
   return (

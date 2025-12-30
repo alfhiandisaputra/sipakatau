@@ -2,7 +2,6 @@
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import React from 'react';
 
-// Komponen terpisah untuk icon sort
 const SortIcon = ({ column, sortBy, sortOrder }) => {
   if (sortBy !== column) return null;
   
@@ -13,5 +12,4 @@ const SortIcon = ({ column, sortBy, sortOrder }) => {
   );
 };
 
-// Tambahkan React.memo untuk optimasi
 export default React.memo(SortIcon);
