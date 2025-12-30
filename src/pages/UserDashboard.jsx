@@ -257,7 +257,7 @@ export default function UserDashboard() {
                 <Button
                   variant="primary"
                   className="w-full mt-6 rounded-xl"
-                  onClick={() => navigate('/scanner')}
+                  onClick={() => navigate('/pickup')}
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Tambah Kontribusi

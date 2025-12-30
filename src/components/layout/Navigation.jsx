@@ -9,6 +9,7 @@ import {
   MapPin, 
   Truck, 
   Trophy,
+  Info,
   Menu,
   X,
   User,
@@ -18,9 +19,18 @@ import {
 } from 'lucide-react';
 import { Button, Avatar } from '../ui';
 import { useAuth } from '../../hooks/useAuth';
+import ReactDOM from 'react-dom';
+
+const ModalPortal = ({ children }) => {
+  return ReactDOM.createPortal(
+    children,
+    document.getElementById('modal-root') || document.body
+  );
+}
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -44,11 +54,12 @@ export default function Navigation() {
   const desktopNavItems = user ? [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
     { id: 'leaderboard', label: 'Leaderboard', icon: Trophy, path: '/leaderboard' },
+    { id: 'faq', label: 'FAQ', icon: Info, path: '/faq' }
   ] : [];
 
   const mobileMenuItems = user ? [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy, path: '/leaderboard' },
+    { id: 'faq', label: 'FAQ', icon: Info, path: '/faq' },
     ...(user?.role === 'admin' ? [{ id: 'admin', label: 'Admin', icon: User, path: '/admin' }] : []),
   ] : [];
 
@@ -57,10 +68,12 @@ export default function Navigation() {
   ];
 
   const handleLogout = () => {
-    logout();
-    navigate('/');
-    setMobileMenuOpen(false);
-  };
+      logout();
+      navigate('/');
+      setMobileMenuOpen(false);
+      setShowLogoutConfirm(false);
+};
+
 
   const handleProfileClick = () => {
     navigate('/profile');
@@ -103,12 +116,12 @@ export default function Navigation() {
                         <Button
                           variant={isActive ? 'primary' : 'ghost'}
                           className={cn(
-                            'rounded-xl px-4',
+                            'rounded-xl px-2',
                             isActive && 'shadow-md'
                           )}
                           size="sm"
                         >
-                          <Icon className="w-4 h-4 mr-2" />
+                          <Icon className="w-4 h-4 mr-1" />
                           {item.label}
                         </Button>
                       </Link>
@@ -116,7 +129,7 @@ export default function Navigation() {
                   })}
                   
                   {/* User Menu */}
-                  <div className="ml-4 flex items-center gap-2">
+                  <div className="ml-2 flex items-center gap-2">
                     <div 
                       className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer transition-colors"
                       onClick={handleProfileClick}
@@ -132,13 +145,13 @@ export default function Navigation() {
                       </div>
                     </div>
                     <Button
-                      onClick={handleLogout}
-                      variant="ghost"
-                      size="sm"
-                      className="text-gray-600 rounded-xl"
-                    >
-                      <LogOut className="w-4 h-4" />
-                    </Button>
+                        onClick={() => setShowLogoutConfirm(true)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-gray-600 rounded-xl"
+                      >
+                        <LogOut className="w-4 h-4" />
+                      </Button>
                   </div>
                 </>
               ) : (
@@ -168,6 +181,45 @@ export default function Navigation() {
             </div>
           </div>
         </div>
+
+
+         {showLogoutConfirm && (
+             <ModalPortal>
+              <div className="fixed inset-0 z-999 flex items-center justify-center">
+                <div
+                  className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                  onClick={() => setShowLogoutConfirm(false)}
+                />
+
+                <div className="relative z-10 w-[90%] max-w-sm rounded-2xl bg-white p-6 shadow-2xl animate-in fade-in zoom-in duration-200">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    Konfirmasi Logout
+                  </h3>
+
+                  <p className="mt-2 text-sm text-gray-600">
+                    Apakah Anda yakin ingin keluar dari akun?
+                  </p>
+
+                  <div className="mt-6 flex justify-end gap-3">
+                    <button
+                      className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors"
+                      onClick={() => setShowLogoutConfirm(false)}
+                    >
+                      Batal
+                    </button>
+
+                    <button
+                      className="px-4 py-2 text-sm font-medium text-white bg-red-500 border border-red-600 rounded-lg hover:bg-red-600 transition-colors"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </div>
+              </ModalPortal>
+            )}
+
       </nav>
 
       {/* Mobile Top Navigation */}
@@ -257,7 +309,7 @@ export default function Navigation() {
                       </div>
                     </div>
                     <Button
-                      onClick={handleLogout}
+                      onClick={() => setShowLogoutConfirm(true)}
                       variant="ghost"
                       size="sm"
                       className="text-gray-600 rounded-xl"
@@ -352,6 +404,7 @@ export default function Navigation() {
             })}
           </div>
         </nav>
+
       )}
     </>
   );

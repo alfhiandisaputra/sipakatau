@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 import { useAuth } from './hooks/useAuth';
 import LeaderboardPage from './pages/LeaderboardPage';
+import FAQ from './pages/FAQ';
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -24,6 +25,8 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/faq" element={<FAQ />}/>
+        
         
         <Route 
           path="/dashboard" 

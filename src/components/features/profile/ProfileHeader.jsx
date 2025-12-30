@@ -42,7 +42,6 @@ const ProfileHeader = ({ user}) => {
                   {user?.email || 'email@contoh.com'}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
-                  <MapPin className="w-4 h-4 text-emerald-200" />
                   <span className="text-emerald-100 text-sm">
                     Kabupaten Soppeng, Sulawesi Selatan
                   </span>
@@ -53,9 +52,9 @@ const ProfileHeader = ({ user}) => {
           
           <div className="flex flex-wrap gap-3">
             <Button
-              variant="outline"
+              variant="ghost"
               onClick={() => navigate('/map')}
-              className="bg-white/10 hover:bg-white/20 border-white text-white rounded-2xl"
+              className="hover:bg-white/20 border-white text-white rounded-2xl"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -63,9 +62,9 @@ const ProfileHeader = ({ user}) => {
               Lihat Peta
             </Button>
             <Button
-              variant="outline"
+              variant="ghost"
               onClick={() => alert('Fitur berbagi profil akan segera hadir!')}
-              className="bg-white/10 hover:bg-white/20 border-white text-white rounded-2xl"
+              className="hover:bg-white/20 border-white text-white rounded-2xl"
             >
               <Share2 className="w-4 h-4 mr-2" />
               Bagikan Profil

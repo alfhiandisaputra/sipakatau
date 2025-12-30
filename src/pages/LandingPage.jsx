@@ -166,11 +166,11 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+       <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 mb-12 text-center md:text-left">
             <div>
               <h3 className="text-2xl font-bold mb-4">SIPAKATAU</h3>
-              <p className="text-gray-400">  Teknologi untuk Lingkungan, Edukasi untuk Generasi</p>
+              <p className="text-gray-400">  Teknologi untuk Lingkungan, <br />Edukasi untuk Generasi</p>
             </div>
             <div>
               <h4 className="text-lg mb-4">Produk</h4>
@@ -202,18 +202,20 @@ export default function LandingPage() {
               </ul>
             </div>
             <div>
-              <h4 className="text-lg mb-4">Tentang</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><button className="hover:text-white transition-colors">Tim Kami</button></li>
-                <li><button className="hover:text-white transition-colors">Mitra</button></li>
-                <li><button className="hover:text-white transition-colors">Karir</button></li>
-              </ul>
-            </div>
-            <div>
               <h4 className="text-lg mb-4">Kontak</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><button className="hover:text-white transition-colors">Bantuan</button></li>
-                <li><button className="hover:text-white transition-colors">FAQ</button></li>
+                <li><button 
+                    onClick={() => navigate('/faq')}
+                    className="hover:text-white transition-colors"
+                  >
+                    Bantuan
+                  </button></li>
+                <li><button 
+                    onClick={() => navigate('/faq')}
+                    className="hover:text-white transition-colors"
+                  >
+                    FAQ
+                  </button></li>
                 <li><button className="hover:text-white transition-colors">Email</button></li>
               </ul>
             </div>

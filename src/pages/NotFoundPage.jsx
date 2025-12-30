@@ -1,4 +1,3 @@
-// src/pages/NotFoundPage.jsx
 import { useNavigate } from 'react-router-dom';
 import { 
   Home, 
@@ -12,15 +11,35 @@ import {
   ShieldAlert,
   Sparkles
 } from 'lucide-react';
-import { Button } from '../components/ui';
 import LayoutWrapper from '../components/layout/LayoutWrapper';
 import { useAuth } from '../hooks/useAuth';
+import { useEffect } from 'react';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  // Tambahkan animasi float dengan inline styles
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   const handleGoHome = () => {
+    console.log('Go home clicked');
     if (user) {
       navigate('/dashboard');
     } else {
@@ -29,10 +48,21 @@ const NotFoundPage = () => {
   };
 
   const handleContactSupport = () => {
+    console.log('Contact support clicked');
     const email = "support@sipakatau.id";
     const subject = "Bantuan: Halaman Tidak Ditemukan";
     const body = `Halo Tim SIPAKATAU,\n\nSaya mengalami masalah mengakses halaman tertentu.\n\nURL yang saya coba akses: ${window.location.href}\n\nTerima kasih.`;
-    window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+  };
+
+  const handleGoBack = () => {
+    console.log('Go back clicked');
+    navigate(-1);
+  };
+
+  const handleExploreFeatures = () => {
+    console.log('Explore features clicked');
+    navigate('/features');
   };
 
   const ecoTips = [
@@ -65,20 +95,20 @@ const NotFoundPage = () => {
   return (
     <LayoutWrapper>
       <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6 bg-linear-to-br from-emerald-50 via-white to-blue-50">
-        <div className="max-w-4xl w-full">
+        <div className="max-w-4xl w-full relative z-10">
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center gap-3 mb-4">
               <div className="relative">
                 <div className="absolute -inset-4 bg-linear-to-r from-emerald-400 to-teal-500 rounded-full blur-lg opacity-30"></div>
-                <div className="relative p-3 bg-white rounded-2xl shadow-lg">
+                <div className="relative p-3 bg-white rounded-2xl shadow-lg z-10">
                   <ShieldAlert className="w-10 h-10 text-emerald-600" />
                 </div>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 z-10 relative">
                 Oops! <span className="text-emerald-600">404</span>
               </h1>
             </div>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto z-10 relative">
               Sepertinya sampah ini telah dibawa ke tempat daur ulang yang benar. 
               Halaman yang Anda cari tidak dapat ditemukan.
             </p>
@@ -87,9 +117,9 @@ const NotFoundPage = () => {
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100">
+              <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 relative z-10">
                 <div className="relative mb-8">
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center z-0">
                     <div className="text-[280px] md:text-[350px] font-bold text-gray-100 select-none">
                       404
                     </div>
@@ -130,7 +160,6 @@ const NotFoundPage = () => {
                               </div>
                             </div>
                             
-                      
                             <div className="w-56 h-8 bg-linear-to-r from-emerald-300 to-teal-400 rounded-t-xl mx-auto -mt-1 shadow-md">
                               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                                 <div className="w-16 h-8 bg-linear-to-r from-emerald-200 to-teal-300 rounded-full shadow-md"></div>
@@ -143,32 +172,29 @@ const NotFoundPage = () => {
                   </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                  <Button
-                    variant="outline"
-                    onClick={() => window.history.back()}
-                    className="h-12 rounded-xl border-gray-300 hover:border-emerald-400"
+                {/* Action Buttons - PERBAIKAN dengan z-index */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 relative z-20">
+                  <button
+                    onClick={handleGoBack}
+                    className="h-12 rounded-xl border border-gray-300 hover:border-emerald-400 flex items-center justify-center px-4 hover:bg-gray-50 transition-colors cursor-pointer relative z-30 active:scale-95"
                   >
                     <ArrowLeft className="w-5 h-5 mr-2" />
                     Kembali
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     onClick={handleGoHome}
-                    variant="primary"
-                    className="h-12 rounded-xl bg-linear-to-r from-emerald-500 to-teal-500"
+                    className="h-12 rounded-xl bg-linear-to-r from-emerald-500 to-teal-500 text-white flex items-center justify-center px-4 hover:from-emerald-600 hover:to-teal-600 transition-colors cursor-pointer relative z-30 active:scale-95 shadow-md"
                   >
                     <Home className="w-5 h-5 mr-2" />
                     {user ? 'Ke Dashboard' : 'Ke Beranda'}
-                  </Button>
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Quick Access */}
             <div className="space-y-6">
-
-              <div className="bg-linear-to-br from-emerald-500 to-teal-500 rounded-2xl p-6 text-white">
+              <div className="bg-linear-to-br from-emerald-500 to-teal-500 rounded-2xl p-6 text-white relative z-10">
                 <div className="flex items-center gap-3 mb-4">
                   <Sparkles className="w-6 h-6" />
                   <h3 className="font-bold">Fakta Lingkungan</h3>
@@ -195,7 +221,7 @@ const NotFoundPage = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100">
+          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100 relative z-10">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-blue-50 rounded-xl">
@@ -207,51 +233,35 @@ const NotFoundPage = () => {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  variant="outline"
+                <button
                   onClick={handleContactSupport}
-                  className="rounded-xl border-blue-300 text-blue-600 hover:border-blue-400 hover:text-blue-700"
+                  className="rounded-xl border border-blue-300 text-blue-600 hover:border-blue-400 hover:text-blue-700 flex items-center justify-center px-4 py-2 transition-colors cursor-pointer relative z-30 active:scale-95"
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   Email Support
-                </Button>
-                <Button
-                  onClick={() => navigate('/')}
-                  variant="ghost"
-                  className="rounded-xl text-gray-600 hover:text-emerald-600"
+                </button>
+                <button
+                  onClick={handleExploreFeatures}
+                  className="rounded-xl text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 flex items-center justify-center px-4 py-2 transition-colors cursor-pointer relative z-30 active:scale-95"
                 >
                   <Compass className="w-4 h-4 mr-2" />
                   Jelajahi Fitur
-                </Button>
+                </button>
               </div>
             </div>
           </div>
 
           {/* Footer */}
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center relative z-10">
             <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} SIPAKATAU • Sistem Pintar Kelola Sampah untuk Masyarakat Unggul
+              © {new Date().getFullYear()} SIPAKATAU || Sistem Pintar Kelola Sampah untuk Masyarakat Unggul
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              Setiap kontribusi Anda berarti untuk bumi yang lebih baik 🌍
+              Setiap kontribusi Anda berarti untuk bumi yang lebih baik
             </p>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-      `}</style>
     </LayoutWrapper>
   );
 };
