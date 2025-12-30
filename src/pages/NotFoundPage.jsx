@@ -160,11 +160,6 @@ const NotFoundPage = () => {
                               </div>
                             </div>
                             
-                            <div className="w-56 h-8 bg-linear-to-r from-emerald-300 to-teal-400 rounded-t-xl mx-auto -mt-1 shadow-md">
-                              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                                <div className="w-16 h-8 bg-linear-to-r from-emerald-200 to-teal-300 rounded-full shadow-md"></div>
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -172,7 +167,7 @@ const NotFoundPage = () => {
                   </div>
                 </div>
 
-                {/* Action Buttons - PERBAIKAN dengan z-index */}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 relative z-20">
                   <button
                     onClick={handleGoBack}
@@ -225,7 +220,7 @@ const NotFoundPage = () => {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-blue-50 rounded-xl">
-                  <Mail className="w-8 h-8 text-blue-600" />
+                  <Mail className="w-8 h-8 text-emerald-600" />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 text-lg">Butuh Bantuan?</h3>
@@ -235,7 +230,7 @@ const NotFoundPage = () => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleContactSupport}
-                  className="rounded-xl border border-blue-300 text-blue-600 hover:border-blue-400 hover:text-blue-700 flex items-center justify-center px-4 py-2 transition-colors cursor-pointer relative z-30 active:scale-95"
+                  className="rounded-xl border border-emerald-300 text-emerald-600 hover:border-emerald-400 hover:text-emerald-700 flex items-center justify-center px-4 py-2 transition-colors cursor-pointer relative z-30 active:scale-95"
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   Email Support
