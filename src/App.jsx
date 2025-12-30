@@ -9,6 +9,7 @@ import ScannerPage from './pages/ScannerPage';
 import MapPage from './pages/MapPage';
 import PickupRequestPage from './pages/PickupRequestPage';
 import RewardsPage from './pages/RewardsPage';
+import ProfilePage from './pages/ProfilePage';
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         return user ? <MapPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
       case 'pickup':
         return user ? <PickupRequestPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
+      case 'profile':
+        return user ? <ProfilePage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
       case 'rewards':
         return user ? <RewardsPage onNavigate={setCurrentPage} /> : <AuthPage onNavigate={setCurrentPage} />;
       default:
