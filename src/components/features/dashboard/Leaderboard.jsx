@@ -69,7 +69,7 @@ export default function Leaderboard({ users, currentUserId }) {
         <div
           key={user.id}
           className={cn(
-            'flex items-center gap-4 p-4 rounded-2xl transition-colors',
+            'flex items-center gap-4 p-4 mb-4 rounded-2xl transition-colors',
             user.id === currentUserId
               ? 'bg-emerald-50 border border-emerald-100'
               : 'bg-gray-50 hover:bg-gray-100'
@@ -91,7 +91,7 @@ export default function Leaderboard({ users, currentUserId }) {
                     </span>
                   )}
                 </h4>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <span className="text-sm text-gray-600">
                     Level {user.level}
                   </span>

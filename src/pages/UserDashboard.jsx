@@ -74,7 +74,6 @@ export default function UserDashboard({ onNavigate }) {
     );
   }
 
-
   return (
     <LayoutWrapper user={currentUser}>
       <div className="min-h-screen bg-gray-50 md:pb-0">
@@ -84,7 +83,6 @@ export default function UserDashboard({ onNavigate }) {
           <QuickActions onNavigate={onNavigate} />
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left Column - Stats */}
             <div className="lg:col-span-2 space-y-8">
               {/* Stats Cards */}
               <div>
@@ -116,7 +114,6 @@ export default function UserDashboard({ onNavigate }) {
 
               {/* Eco Level */}
           <div>
-            {/* <h2 className="text-xl font-bold text-gray-900 mb-4">Level Anda</h2> */}
             <EcoLevel 
               points={currentUser.points}
               level={currentUser.level}
@@ -226,13 +223,14 @@ export default function UserDashboard({ onNavigate }) {
 
             {/* Right Column - Leaderboard & Goals */}
             <div className="space-y-8">
-               <div className="invisible flex items-center justify-between mb-4">
+              <div className="invisible flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold text-gray-900">invisible</h2>
               </div>
               {/* Leaderboard */}
             <Card className="p-6 rounded-3xl">
               <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-bold text-gray-900">Papan Peringkat</h2>
+                  <h2 className="text-xl font-bold text-gray-900 mb-1.5">Papan Peringkat</h2>
+                  <span className="text-sm text-gray-500 mb">Top 5</span>
               </div>
                 <Leaderboard 
                   users={sortedUsersForLeaderboard} 

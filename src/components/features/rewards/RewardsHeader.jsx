@@ -1,5 +1,6 @@
 // src/components/features/rewards/RewardsHeader.jsx
 import { ArrowLeft, Gift, Award } from 'lucide-react';
+import { formatPoints } from '../../../utils/formatters';
 
 const RewardsHeader = ({ user, onBack }) => {
   const userPoints = user?.points || 0;
@@ -54,7 +55,7 @@ const RewardsHeader = ({ user, onBack }) => {
                 <div>
                   <p className="text-amber-100 text-sm">Poin Anda</p>
                   <p className="text-2xl font-bold text-white">
-                    {userPoints.toLocaleString()}
+                          {formatPoints(userPoints)}
                   </p>
                 </div>
               </div>
@@ -68,7 +69,7 @@ const RewardsHeader = ({ user, onBack }) => {
                 <div>
                   <p className="text-emerald-100 text-sm">Telah Ditukar</p>
                   <p className="text-2xl font-bold text-white">
-                    {redeemedPoints.toLocaleString()}
+                          {formatPoints(redeemedPoints)}
                   </p>
                 </div>
               </div>
@@ -80,7 +81,7 @@ const RewardsHeader = ({ user, onBack }) => {
               <div className="flex items-center gap-2">
                 <Award className="w-5 h-5 text-amber-300" />
                 <span className="text-white font-bold">
-                  {userPoints.toLocaleString()}
+                  {formatPoints(userPoints)}
                 </span>
               </div>
             </div>

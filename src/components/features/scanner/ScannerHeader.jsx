@@ -1,5 +1,6 @@
 // src/components/features/scanner/ScannerHeader.jsx
 import { ArrowLeft, Award } from 'lucide-react';
+import { formatPoints } from '../../../utils/formatters';
 
 const ScannerHeader = ({ user, onBack }) => {
   return (
@@ -45,7 +46,7 @@ const ScannerHeader = ({ user, onBack }) => {
                 <div>
                   <p className="text-emerald-100 text-sm">Total Poin Anda</p>
                   <p className="text-3xl font-bold text-white">
-                    {user?.points?.toLocaleString() || 0}
+                    {formatPoints(user.points)}
                   </p>
                 </div>
               </div>
