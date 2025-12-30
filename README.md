@@ -120,13 +120,6 @@ Menjadi platform utama dalam transformasi pengelolaan sampah di Indonesia dengan
 - **Level:** Master (Level 4)
 - **Role:** user
 
-### **Admin SIPAKATAU**
-
-- **Email:** admin@example.com
-- **Password:** admin123
-- **Poin:** 500 poin
-- **Role:** admin
-
 ### **User Lain untuk Leaderboard:**
 
 1. **Agus Pratama** - 12,000 poin (Planet Hero)
