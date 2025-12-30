@@ -1,5 +1,6 @@
 // src/components/layout/Navigation.jsx
 import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../../utils/index';
 import { 
   Home, 
@@ -18,10 +19,14 @@ import {
 import { Button, Avatar } from '../ui';
 import { useAuth } from '../../hooks/useAuth';
 
-export default function Navigation({ currentPage, onNavigate }) {
+export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, logout } = useAuth(); 
+  const { user, logout } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const currentPage = location.pathname.replace('/', '') || 'home';
+  
   const EXCLUDED_PAGES = ['auth'];
 
   if(EXCLUDED_PAGES.includes(currentPage)) {
@@ -29,61 +34,52 @@ export default function Navigation({ currentPage, onNavigate }) {
   }
 
   const mobileBottomNavItems = user ? [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'map', label: 'Peta', icon: MapPin },
-    { id: 'scanner', label: 'Scanner', icon: Camera },
-    { id: 'pickup', label: 'Pickup', icon: Truck },
-    { id: 'leaderboard', label: 'Ranking', icon: Trophy },
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+    { id: 'map', label: 'Peta', icon: MapPin, path: '/map' },
+    { id: 'scanner', label: 'Scanner', icon: Camera, path: '/scanner' },
+    { id: 'pickup', label: 'Pickup', icon: Truck, path: '/pickup' },
+    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy, path: '/leaderboard' },
   ] : [];
 
-
   const desktopNavItems = user ? [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy, path: '/leaderboard' },
   ] : [];
 
   const mobileMenuItems = user ? [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
-    ...(user?.role === 'admin' ? [{ id: 'admin', label: 'Admin', icon: User }] : []),
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+    { id: 'leaderboard', label: 'Leaderboard', icon: Trophy, path: '/leaderboard' },
+    ...(user?.role === 'admin' ? [{ id: 'admin', label: 'Admin', icon: User, path: '/admin' }] : []),
   ] : [];
 
-
   const unauthedNavItems = [
-    { id: 'home', label: 'Beranda', icon: Home },
+    { id: 'home', label: 'Beranda', icon: Home, path: '/' },
   ];
 
-  const handleNavigate = (page) => {
-    if (page === 'home' && user) {
-      onNavigate('dashboard');
-    } else if (page === 'home') {
-      onNavigate('home');
-    } else {
-      onNavigate(page);
-    }
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+    setMobileMenuOpen(false);
+  };
+
+  const handleProfileClick = () => {
+    navigate('/profile');
     setMobileMenuOpen(false);
   };
 
   const handleLogoClick = () => {
     if (user) {
-      onNavigate('dashboard');
+      navigate('/dashboard');
     } else {
-      onNavigate('home');
+      navigate('/');
     }
-  };
-
-  const handleProfileClick = () => {
-    onNavigate('profile');
-    setMobileMenuOpen(false);
   };
 
   return (
     <>
-      {/* Desktop Navigation */}
       <nav className="hidden md:block fixed top-0 left-0 right-0 glass-effect border-b z-990 h-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
             <div 
               onClick={handleLogoClick}
               className="flex items-center gap-3 cursor-pointer group"
@@ -101,25 +97,24 @@ export default function Navigation({ currentPage, onNavigate }) {
             <div className="flex items-center gap-2">
               {user ? (
                 <>
-                  {/* Desktop Nav Items */}
                   {desktopNavItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = currentPage === item.id;
                     
                     return (
-                      <Button
-                        key={item.id}
-                        onClick={() => handleNavigate(item.id)}
-                        variant={isActive ? 'primary' : 'ghost'}
-                        className={cn(
-                          'rounded-xl px-4',
-                          isActive && 'shadow-md'
-                        )}
-                        size="sm"
-                      >
-                        <Icon className="w-4 h-4 mr-2" />
-                        {item.label}
-                      </Button>
+                      <Link key={item.id} to={item.path}>
+                        <Button
+                          variant={isActive ? 'primary' : 'ghost'}
+                          className={cn(
+                            'rounded-xl px-4',
+                            isActive && 'shadow-md'
+                          )}
+                          size="sm"
+                        >
+                          <Icon className="w-4 h-4 mr-2" />
+                          {item.label}
+                        </Button>
+                      </Link>
                     );
                   })}
                   
@@ -140,7 +135,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                       </div>
                     </div>
                     <Button
-                      onClick={logout}
+                      onClick={handleLogout}
                       variant="ghost"
                       size="sm"
                       className="text-gray-600 rounded-xl"
@@ -151,24 +146,26 @@ export default function Navigation({ currentPage, onNavigate }) {
                 </>
               ) : (
                 <div className="flex items-center gap-3">
-                  <Button
-                    onClick={() => onNavigate('auth')}
-                    variant="outline"
-                    size="sm"
-                    className="rounded-xl border-emerald-500 text-emerald-500 bg-white hover:text-emerald-600 hover:border-emerald-600 hover:bg-gray-300"
-                  >
-                    <LogIn className="w-4 h-4 mr-2" />
-                    Masuk
-                  </Button>
-                  <Button
-                    onClick={() => onNavigate('auth')}
-                    variant="primary"
-                    size="sm"
-                    className="rounded-xl border-white shadow-emerald-500/25"
-                  >
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Daftar
-                  </Button>
+                  <Link to="/auth">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-xl border-emerald-500 text-emerald-500 bg-white hover:text-emerald-600 hover:border-emerald-600 hover:bg-gray-300"
+                    >
+                      <LogIn className="w-4 h-4 mr-2" />
+                      Masuk
+                    </Button>
+                  </Link>
+                  <Link to="/auth">
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="rounded-xl border-white shadow-emerald-500/25"
+                    >
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Daftar
+                    </Button>
+                  </Link>
                 </div>
               )}
             </div>
@@ -215,7 +212,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   className="rounded-xl"
                 >
-                  {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                  {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5 bg" />}
                 </Button>
               </div>
             )}
@@ -245,22 +242,27 @@ export default function Navigation({ currentPage, onNavigate }) {
                   const isActive = currentPage === item.id;
                   
                   return (
-                    <Button
+                    <Link
                       key={item.id}
-                      onClick={() => handleNavigate(item.id)}
-                      variant={isActive ? 'primary' : 'ghost'}
-                      className="w-full justify-start rounded-xl px-4 py-3"
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block"
                     >
-                      <Icon className="w-5 h-5 mr-3" />
-                      {item.label}
-                    </Button>
+                      <Button
+                        variant={isActive ? 'primary' : 'ghost'}
+                        className="w-full justify-start rounded-xl px-4 py-3"
+                      >
+                        <Icon className="w-5 h-5 mr-3" />
+                        {item.label}
+                      </Button>
+                    </Link>
                   );
                 })}
                 
                 {/* Profile and Logout */}
                 <div className="pt-4 border-t border-gray-200">
                   <div className="flex items-center justify-between px-4 py-3">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3" onClick={handleProfileClick}>
                       <Avatar 
                         src={user.avatar} 
                         fallback={user.name}
@@ -272,7 +274,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                       </div>
                     </div>
                     <Button
-                      onClick={logout}
+                      onClick={handleLogout}
                       variant="ghost"
                       size="sm"
                       className="text-gray-600 rounded-xl"
@@ -292,33 +294,40 @@ export default function Navigation({ currentPage, onNavigate }) {
                   const isActive = currentPage === item.id;
                   
                   return (
-                    <Button
+                    <Link
                       key={item.id}
-                      onClick={() => handleNavigate(item.id)}
-                      variant={isActive ? 'primary' : 'ghost'}
-                      className="w-full rounded-xl px-4 py-3"
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block"
                     >
-                      <Icon className="w-5 h-5 mr-3" />
-                      {item.label}
-                    </Button>
+                      <Button
+                        variant={isActive ? 'primary' : 'ghost'}
+                        className="w-full rounded-xl px-4 py-3"
+                      >
+                        <Icon className="w-5 h-5 mr-3" />
+                        {item.label}
+                      </Button>
+                    </Link>
                   );
                 })}
-                <Button
-                  onClick={() => onNavigate('auth')}
-                  variant="outline"
-                  className="w-full rounded-xl px-6 py-4 border-emerald-500 text-emerald-500 bg-white hover:text-emerald-600 hover:border-emerald-600 hover:bg-gray-300"
-                >
-                  <LogIn className="w-5 h-5 mr-3" />
-                  Masuk ke Akun
-                </Button>
-                <Button
-                  onClick={() => onNavigate('auth')}
-                  variant="primary"
-                  className="w-full rounded-xl px-6 py-4 shadow-lg"
-                >
-                  <Sparkles className="w-5 h-5 mr-3" />
-                  Daftar Gratis
-                </Button>
+                <Link to="/auth" onClick={() => setMobileMenuOpen(false)} className="block">
+                  <Button
+                    variant="outline"
+                    className="w-full rounded-xl px-6 py-4 border-emerald-500 text-emerald-500 bg-white hover:text-emerald-600 hover:border-emerald-600 hover:bg-gray-300"
+                  >
+                    <LogIn className="w-5 h-5 mr-3" />
+                    Masuk ke Akun
+                  </Button>
+                </Link>
+                <Link to="/auth" onClick={() => setMobileMenuOpen(false)} className="block">
+                  <Button
+                    variant="primary"
+                    className="w-full rounded-xl px-6 py-4 shadow-lg"
+                  >
+                    <Sparkles className="w-5 h-5 mr-3" />
+                    Daftar Gratis
+                  </Button>
+                </Link>
               </div>
             )}
           </div>
@@ -334,15 +343,16 @@ export default function Navigation({ currentPage, onNavigate }) {
               const isActive = currentPage === item.id;
               
               return (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => handleNavigate(item.id)}
+                  to={item.path}
                   className={cn(
                     "flex flex-col items-center justify-center py-2 rounded-xl transition-all",
                     isActive 
                       ? "bg-emerald-50 text-emerald-600" 
                       : "text-gray-600 hover:bg-gray-50"
                   )}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   <Icon className={cn(
                     "w-5 h-5 mb-1",
@@ -354,7 +364,7 @@ export default function Navigation({ currentPage, onNavigate }) {
                   )}>
                     {item.label}
                   </span>
-                </button>
+                </Link>
               );
             })}
           </div>

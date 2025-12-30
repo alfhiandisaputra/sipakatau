@@ -1,18 +1,20 @@
 // src/pages/LandingPage.jsx
+import { useNavigate } from 'react-router-dom';
 import { Button, Card, ImageWithFallback } from '../components/ui';
 import { 
   Sparkles, Camera, Truck, Trophy, Leaf, Users, Recycle 
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 
-export default function LandingPage({ onNavigate }) {
+export default function LandingPage() { 
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleGetStarted = () => {
     if (user) {
-      onNavigate('dashboard');
+      navigate('/dashboard');
     } else {
-      onNavigate('auth');
+      navigate('/auth');
     }
   };
 
@@ -173,9 +175,30 @@ export default function LandingPage({ onNavigate }) {
             <div>
               <h4 className="text-lg mb-4">Produk</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><button onClick={() => onNavigate('scanner')} className="hover:text-white transition-colors">AI Scanner</button></li>
-                <li><button onClick={() => onNavigate('pickup')} className="hover:text-white transition-colors">Smart Pickup</button></li>
-                <li><button onClick={() => onNavigate('rewards')} className="hover:text-white transition-colors">Rewards</button></li>
+                <li>
+                  <button 
+                    onClick={() => navigate('/scanner')}
+                    className="hover:text-white transition-colors"
+                  >
+                    AI Scanner
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => navigate('/pickup')}
+                    className="hover:text-white transition-colors"
+                  >
+                    Smart Pickup
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => navigate('/rewards')}
+                    className="hover:text-white transition-colors"
+                  >
+                    Rewards
+                  </button>
+                </li>
               </ul>
             </div>
             <div>

@@ -1,9 +1,12 @@
-import { useState, useEffect, useMemo } from 'react';
+// src/context/AuthProvider.jsx
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkStoredUser = () => {
@@ -24,24 +27,26 @@ const AuthProvider = ({ children }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const login = (userData) => {
+  const login = useCallback((userData) => {
     const userWithRole = { role: 'user', points: 0, ...userData };
     setUser(userWithRole);
     localStorage.setItem('sipakatau_user', JSON.stringify(userWithRole));
-  };
+    navigate('/dashboard');
+  }, [navigate]);
 
-  const logout = () => {
+
+  const logout = useCallback(() => {
     setUser(null);
     localStorage.removeItem('sipakatau_user');
-    window.location.href = '/';
-  };
+    navigate('/');
+  }, [navigate]);
 
   const contextValue = useMemo(() => ({
     user,
     login,
     logout,
     isLoading,
-  }), [user, isLoading]);
+  }), [user, login, logout, isLoading]);
 
   return (
     <AuthContext.Provider value={contextValue}>

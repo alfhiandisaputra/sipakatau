@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { ProfileHeader } from '../components/features/profile';
 import LayoutWrapper from '../components/layout/LayoutWrapper';
+import { useNavigate } from 'react-router-dom';
 import { 
   ProfileInfo, 
   UserStats, 
@@ -28,7 +29,8 @@ import {
   Clock
 } from 'lucide-react';
 
-export default function ProfilePage({ onNavigate }) {
+export default function ProfilePage() {
+  const navigate = useNavigate()
   const { user, logout, updateUser } = useAuth();
   const [activeTab, setActiveTab] = useState('overview');
   const [isEditing, setIsEditing] = useState(false);
@@ -270,7 +272,7 @@ export default function ProfilePage({ onNavigate }) {
             Silakan login untuk melihat profil
           </h1>
           <Button
-            onClick={() => onNavigate('auth')}
+            onClick={() => navigate('/auth')}
             variant="primary"
             className="rounded-2xl"
           >
@@ -286,8 +288,7 @@ export default function ProfilePage({ onNavigate }) {
     <div className="min-h-screen bg-gray-50">
       <ProfileHeader
         user={user}
-        onBack={() => onNavigate('dashboard')}
-        onNavigate={onNavigate}
+        onBack={() => navigate('/dashboard')}
         stats={stats}
       />
 
@@ -316,7 +317,6 @@ export default function ProfilePage({ onNavigate }) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Profile & Stats */}
           <div className="lg:col-span-2 space-y-8">
             {activeTab === 'overview' && (
               <>
@@ -374,7 +374,7 @@ export default function ProfilePage({ onNavigate }) {
                 <Button
                   variant="outline"
                   className="w-full rounded-xl justify-start px-4 py-3"
-                  onClick={() => onNavigate('pickup')}
+                  onClick={() => navigate('/pickup')}
                 >
                   <div className="p-2 bg-emerald-100 rounded-lg mr-3">
                     <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -390,7 +390,7 @@ export default function ProfilePage({ onNavigate }) {
                 <Button
                   variant="outline"
                   className="w-full rounded-xl justify-start px-4 py-3"
-                  onClick={() => onNavigate('map')}
+                  onClick={() => navigate('/map')}
                 >
                   <div className="p-2 bg-blue-100 rounded-lg mr-3">
                     <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -406,7 +406,7 @@ export default function ProfilePage({ onNavigate }) {
                 <Button
                   variant="outline"
                   className="w-full rounded-xl justify-start px-4 py-3"
-                  onClick={() => onNavigate('scanner')}
+                  onClick={() => navigate('/scanner')}
                 >
                   <div className="p-2 bg-purple-100 rounded-lg mr-3">
                     <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

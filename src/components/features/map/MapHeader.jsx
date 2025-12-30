@@ -36,10 +36,8 @@ const MapHeader = ({ user, onBack}) => {
             </div>
           </div>
           
-          {/* Right Section - Actions & User Info */}
           <div className="hidden md:flex items-center gap-4">
             
-            {/* User Points */}
             <div className="bg-white/20 backdrop-blur-lg rounded-2xl p-4">
               <div className="flex items-center gap-4">
                 <div className="bg-linear-to-br from-[#F59E0B] to-[#10B981] p-3 rounded-xl">

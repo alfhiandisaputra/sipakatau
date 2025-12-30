@@ -6,9 +6,11 @@ import  Label from "../components/ui/Label";
 import PickupHeader from "../components/features/pickup/PickupHeader";
 import { CheckCircle, Calendar, MapPin, Package, ArrowRight, ArrowLeft } from "lucide-react";
 import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from "react-router-dom";
 
 
-export default function PickupRequest({ onNavigate }) {
+export default function PickupRequest() {
+  const navigate = useNavigate()
   const { user } = useAuth();
 
   const [step, setStep] = useState(1);
@@ -33,12 +35,12 @@ export default function PickupRequest({ onNavigate }) {
 
   const handleSubmit = () => {
     alert('Penjemputan berhasil dijadwalkan! Tim kami akan segera menghubungi Anda.');
-    if (onNavigate) onNavigate('dashboard');
+    if (navigate) navigate('/dashboard');
   };
 
   return (
     <div className="min-h-screen mt-20">
-      <PickupHeader user={user} onBack={() => onNavigate('dashboard')} />
+      <PickupHeader user={user} onBack={() => navigate('/dashboard')} />
       <div className="max-w-4xl mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-12">
         <div className="mb-8 text-center md:text-left">
           <h1 className="text-4xl font-bold mb-2 text-[#0f172a]">Jadwalkan Penjemputan</h1>
