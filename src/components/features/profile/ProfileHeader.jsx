@@ -5,7 +5,7 @@ import { getUserLevelBadge, getRankFromPoints } from '../../../utils'
 import { mockUsers } from '../../../data/mockUsers';
 import { useNavigate } from 'react-router-dom';
 
-const ProfileHeader = ({ user, onBack}) => {
+const ProfileHeader = ({ user}) => {
   const userBadge = getUserLevelBadge(user?.level);
   const userRank = getRankFromPoints(user?.points || 0, mockUsers);
   const navigate = useNavigate();
@@ -15,23 +15,6 @@ const ProfileHeader = ({ user, onBack}) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={onBack}
-              className="
-                group
-                bg-white/20 backdrop-blur-lg rounded-2xl 
-                p-2 md:p-2.5 
-                hover:bg-white/40 hover:shadow-md 
-                transition-all duration-200 active:scale-95 
-                border border-white/10 cursor-pointer
-              "
-            >
-              <ArrowLeft 
-                className="w-5 h-5 md:w-6 md:h-6 text-white transition-transform group-hover:-translate-x-1" 
-                strokeWidth={2.5} 
-              />
-            </button>
 
             <div className="flex items-center gap-4">
               <div className="relative group">

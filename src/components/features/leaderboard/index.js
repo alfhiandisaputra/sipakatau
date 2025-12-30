@@ -3,6 +3,5 @@ export { default as  LeaderboardFilter} from './LeaderboardFilter';
 export { default as LeaderboardHeader } from './LeaderboardHeader';
 export { default as LeaderboardPagination } from './LeaderboardPagination';
 export { default as LeaderboardRewards } from './LeaderboardRewards';
-export { default as LeaderboardRow } from './LeaderboardRow';
 export { default as LeaderboardStats } from './LeaderboardStats';
 export { default as LeaderboardTable } from './LeaderboardTable';

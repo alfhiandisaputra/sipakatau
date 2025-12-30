@@ -189,20 +189,6 @@ export default function Navigation() {
           <div className="flex items-center gap-2">
             {user && (
               <div className="flex items-center gap-2">
-                <div 
-                  className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                  onClick={handleProfileClick}
-                >
-                  <Avatar 
-                    src={user.avatar} 
-                    fallback={user.name}
-                    size="xs"
-                  />
-                  <div className="text-right">
-                    <p className="text-xs font-medium text-gray-900">{user.name?.split(' ')[0] || 'User'}</p>
-                    <p className="text-[10px] text-gray-700">{user.points} poin</p>
-                  </div>
-                </div>
                 <Button
                   variant="ghost"
                   size="sm"
