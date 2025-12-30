@@ -74,7 +74,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="hidden md:block fixed top-0 left-0 right-0 glass-effect border-b z-990 h-20">
+      <nav className="hidden md:block fixed top-0 left-0  right-0 glass-effect backdrop-blur-lg z-990 h-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             <div 
@@ -171,7 +171,7 @@ export default function Navigation() {
       </nav>
 
       {/* Mobile Top Navigation */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 glass-effect border-b z-990 h-16">
+      <nav className="md:hidden fixed top-0 left-0 right-0 glass-effect backdrop-blur-lg border-b z-990 h-16">
         <div className="flex items-center justify-between px-4 h-16">
           <div 
             onClick={handleLogoClick}
@@ -229,7 +229,7 @@ export default function Navigation() {
 
       {/* Mobile Menu (Hamburger Menu) */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed top-16 left-0 right-0 glass-effect border-b z-40 shadow-lg">
+        <div className="md:hidden fixed top-16 left-0 right-0 glass-effect backdrop-blur-lg z-40 shadow-lg">
           <div className="px-4 py-4 space-y-2 max-h-[60vh] overflow-y-auto">
             {user ? (
               <>
@@ -333,7 +333,7 @@ export default function Navigation() {
 
       {/* Bottom Navigation (Mobile) */}
       {user && (
-        <nav className="md:hidden fixed bottom-0 left-0 right-0 glass-effect border-t z-50">
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 glass-effect backdrop-blur-lg border-t z-50">
           <div className="grid grid-cols-5 gap-1 px-1 py-2">
             {mobileBottomNavItems.map((item) => {
               const Icon = item.icon;
