@@ -2,6 +2,7 @@
 import { useState, useMemo } from 'react';
 import { Card } from '../components/ui';
 import { useNavigate } from 'react-router-dom';
+import LayoutWrapper from '../components/layout/LayoutWrapper';
 
 import { 
   ArrowLeft,
@@ -208,6 +209,7 @@ const HistoryPage = () => {
   };
 
   return (
+    <LayoutWrapper>
     <div className="min-h-screen bg-gray-50 pb-20">
       {/* Header */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-3">
@@ -611,6 +613,7 @@ const HistoryPage = () => {
           </div>
         )}
     </div>
+    </LayoutWrapper>
   );
 };
 
