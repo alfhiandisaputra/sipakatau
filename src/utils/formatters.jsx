@@ -55,3 +55,38 @@ export const formatContactInfo = (type, value) => {
       return value;
   }
 };
+
+export const formatDateHistory = (dateString) => {
+  if (!dateString) return '';
+  
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffTime = Math.abs(now - date);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  if (diffDays === 0) return 'Hari ini';
+  if (diffDays === 1) return 'Kemarin';
+  if (diffDays < 7) return `${diffDays} hari yang lalu`;
+  
+  return date.toLocaleDateString('id-ID', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+};
+
+export const formatTime = (dateString) => {
+  if (!dateString) return '';
+  
+  const date = new Date(dateString);
+  return date.toLocaleTimeString('id-ID', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+};
+
+export const formatDateTime = (dateString) => {
+  return `${formatDateHistory(dateString)} • ${formatTime(dateString)}`;
+};
+

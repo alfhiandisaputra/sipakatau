@@ -8,7 +8,7 @@ export const mockUsers = [
     points: 9000,
     role: 'user',
     avatar: null,
-    joinDate: '2024-01-15',
+    joinDate: "2024-01-15",
     level: 'Master'
   },
   {

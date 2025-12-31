@@ -13,6 +13,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import { useAuth } from './hooks/useAuth';
 import LeaderboardPage from './pages/LeaderboardPage';
 import FAQ from './pages/FAQ';
+import HistoryPage from './pages/HistoryPage';
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -81,6 +82,14 @@ function App() {
           element={
             <ProtectedRoute>
               <LeaderboardPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/history" 
+          element={
+            <ProtectedRoute>
+              <HistoryPage />
             </ProtectedRoute>
           } 
         />
