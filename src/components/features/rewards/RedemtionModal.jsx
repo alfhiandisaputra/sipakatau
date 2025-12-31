@@ -14,7 +14,7 @@ export default function RedemptionModal({
 
   return (
     <div 
-      className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-end md:items-center justify-center p-0 md:p-4 z-50"
+      className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-end md:items-center justify-center p-0 md:p-4 z-999"
       onClick={onCancel}
     >
       <Card

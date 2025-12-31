@@ -60,7 +60,6 @@ export default function FAQ() {
   };
 
   const handleSaveFAQ = (itemId) => {
-    // Simpan ke localStorage atau state management
     const savedFAQs = JSON.parse(localStorage.getItem('savedFAQs') || '[]');
     if (!savedFAQs.includes(itemId)) {
       savedFAQs.push(itemId);
@@ -84,7 +83,7 @@ export default function FAQ() {
                 Pusat Bantuan & FAQ
               </h1>
               <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
-                Temukan jawaban untuk pertanyaan umum tentang EcoEdu Scanner
+                Temukan jawaban untuk pertanyaan umum tentang Sipakatau
               </p>
             </div>
           </div>

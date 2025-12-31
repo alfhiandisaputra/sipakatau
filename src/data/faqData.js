@@ -5,42 +5,13 @@ import {
   Shield,
   Smartphone,
   Globe,
-  Recycle,
-  HelpCircle,
-  Zap,
-  Users,
-  CreditCard,
-  ShieldCheck,
-  Search,
-  ChevronDown,
-  ChevronUp,
-  Mail,
-  Phone,
-  MessageCircle,
-  FileText,
   Package,
   HardDrive,
   Leaf,
   Cpu,
-  Coffee,
   TreePine,
-  Droplets,
-  SprayCan,
-  Glasses,
-  Apple,
-  Newspaper,
-  ShoppingBag,
   GlassWater,
   FileText as FileIcon,
-  TrendingUp,
-  AlertTriangle,
-  Lightbulb,
-  GraduationCap,
-  Target,
-  Info,
-  CheckCircle,
-  Share2,
-  Save,
   BookOpen as BookIcon,
   ArrowLeft,
   Award as AwardIcon
@@ -148,7 +119,7 @@ export const faqCategories = [
       {
         id: 'account-1',
         question: 'Bagaimana cara reset password?',
-        answer: '1. Klik "Lupa Password" di halaman login\n2. Masukkan email terdaftar\n3. Cek email untuk link reset\n4. Buat password baru\n5. Login dengan password baru\nJika mengalami masalah, hubungi support@ecoeduscanner.id'
+        answer: '1. Klik "Lupa Password" di halaman login\n2. Masukkan email terdaftar\n3. Cek email untuk link reset\n4. Buat password baru\n5. Login dengan password baru\nJika mengalami masalah, hubungi support@sipakatau.id'
       },
       {
         id: 'account-2',
@@ -188,12 +159,12 @@ export const faqCategories = [
       {
         id: 'tech-3',
         question: 'Bagaimana cara update aplikasi?',
-        answer: 'Update otomatis:\n• Aktifkan auto-update di Play Store/App Store\nUpdate manual:\n1. Buka Play Store/App Store\n2. Cari "EcoEdu Scanner"\n3. Klik "Update" jika tersedia\nPastikan selalu gunakan versi terbaru untuk fitur terbaik.'
+        answer: 'Update otomatis:\n• Aktifkan auto-update di Play Store/App Store\nUpdate manual:\n1. Buka Play Store/App Store\n2. Cari "sipakatau"\n3. Klik "Update" jika tersedia\nPastikan selalu gunakan versi terbaru untuk fitur terbaik.'
       },
       {
         id: 'tech-4',
         question: 'Apakah ada versi desktop/web?',
-        answer: 'Saat ini hanya tersedia versi mobile (Android & iOS). Versi web sedang dalam pengembangan dan akan segera hadir. Anda bisa mengakses versi web melalui browser di https://scanner.ecoedu.id (coming soon)'
+        answer: 'Saat ini hanya tersedia versi mobile (Android & iOS). Versi web sedang dalam pengembangan dan akan segera hadir. Anda bisa mengakses versi web melalui browser di https://scanner.sipakatau.id (coming soon)'
       }
     ]
   },
@@ -218,12 +189,12 @@ export const faqCategories = [
       {
         id: 'env-3',
         question: 'Bagaimana cara berkontribusi lebih?',
-        answer: 'Selain menggunakan aplikasi:\n1. Gabung komunitas EcoEdu di media sosial\n2. Jadi relawan edukasi lingkungan\n3. Ikuti event bersih-bersih bersama\n4. Donasi melalui aplikasi\n5. Sebarkan edukasi ke teman dan keluarga'
+        answer: 'Selain menggunakan aplikasi:\n1. Gabung komunitas sipakatau di media sosial\n2. Jadi relawan edukasi lingkungan\n3. Ikuti event bersih-bersih bersama\n4. Donasi melalui aplikasi\n5. Sebarkan edukasi ke teman dan keluarga'
       },
       {
         id: 'env-4',
         question: 'Apakah ada program corporate partnership?',
-        answer: 'Ya! Kami terbuka untuk:\n• CSR perusahaan\n• Program sustainability\n• Edukasi karyawan\n• Sponsorship event lingkungan\nHubungi partnership@ecoeduscanner.id untuk informasi lebih lanjut.'
+        answer: 'Ya! Kami terbuka untuk:\n• CSR perusahaan\n• Program sustainability\n• Edukasi karyawan\n• Sponsorship event lingkungan\nHubungi partnership@sipakatau.id untuk informasi lebih lanjut.'
       }
     ]
   }
@@ -382,10 +353,10 @@ export const getEducationContent = (wasteType) => {
 };
 
 export const contactInfo = {
-  email: 'support@ecoeduscanner.id',
+  email: 'support@sipakatau.id',
   whatsapp: '6281234567890',
   phone: '1500-123',
   hotline: '1500-123',
-  youtube: 'https://youtube.com/ecoeduscanner',
-  website: 'https://scanner.ecoedu.id'
+  youtube: 'https://youtube.com/sipakatau',
+  website: 'https://scanner.sipakatau.id'
 };
